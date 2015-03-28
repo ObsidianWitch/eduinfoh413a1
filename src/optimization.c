@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <values.h>
 
-#include "optimization.h" 
+#include "optimization.h"
 #include "instance.h"
 #include "utilities.h"
 
@@ -43,15 +43,18 @@ long long int computeCost (long int *s ) {
     long long int sum;
     
     /* Diagonal value are not considered */
-    for (sum = 0, h = 0; h < PSize; h++ ) 
-	for ( k = h + 1; k < PSize; k++ )
-	    sum += CostMat[s[h]][s[k]];
+    for (sum = 0, h = 0; h < PSize; h++ ) {
+        for ( k = h + 1; k < PSize; k++ ) {
+            sum += CostMat[s[h]][s[k]];
+        }
+    }
+    
     return(sum);
 }
 
 
 void createRandomSolution(long int *s) {
-    int j; 
+    int j;
     long int *random;
 
     random = generate_random_vector(PSize);
@@ -60,4 +63,3 @@ void createRandomSolution(long int *s) {
     }
     free ( random );
 }
-
