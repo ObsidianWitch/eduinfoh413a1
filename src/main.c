@@ -29,17 +29,16 @@
 #include "timer.h"
 #include "optimization.h"
 
-char *FileName;
 
-void readOpts(int argc, char **argv) {
+char* readOpts(int argc, char **argv) {
     char opt;
+    char *fileName = NULL;
 
-    FileName = NULL;
     while ( (opt = getopt(argc, argv, "i:")) > 0 ) {
         switch (opt) {
             case 'i': /* Instance file */
-                FileName = (char *)malloc(strlen(optarg)+1);
-                strncpy(FileName, optarg, strlen(optarg));
+                fileName = (char *)malloc(strlen(optarg)+1);
+                strncpy(fileName, optarg, strlen(optarg));
                 break;
             
             default:
@@ -47,10 +46,12 @@ void readOpts(int argc, char **argv) {
         }
     }
 
-    if ( !FileName ) {
+    if (!fileName) {
         printf("No instance file provided (use -i <instance_name>). Exiting.\n");
         exit(1);
     }
+    
+    return fileName;
 }
 
 
@@ -59,6 +60,7 @@ int main (int argc, char **argv) {
     long int i,j;
     long int *currentSolution;
     int cost, newCost, temp, firstRandomPosition, secondRandomPosition;
+    char *fileName;
 
     /* Do not buffer output */
     setbuf(stdout,NULL);
@@ -70,10 +72,10 @@ int main (int argc, char **argv) {
     }
 
     /* Read parameters */
-    readOpts(argc, argv);
+    fileName = readOpts(argc, argv);
 
     /* Read instance file */
-    CostMat = readInstance(FileName);
+    CostMat = readInstance(fileName);
     printf("Data have been read from instance file. Size of instance = %ld.\n\n",
         PSize);
 
