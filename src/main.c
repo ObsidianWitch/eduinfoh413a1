@@ -23,7 +23,7 @@
 #include <stdlib.h>
 
 #include "instance.h"
-#include "utilities.h"
+#include "rand.h"
 #include "timer.h"
 #include "optimization.h"
 #include "options.h"

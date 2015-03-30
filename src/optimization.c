@@ -26,6 +26,7 @@
 #include "optimization.h"
 #include "instance.h"
 #include "utilities.h"
+#include "rand.h"
 
 #ifdef __MINGW32__
 #include <float.h>

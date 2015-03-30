@@ -18,4 +18,6 @@ add_executable(lop
     src/utilities.h
     src/options.c
     src/options.h
+    src/rand.c
+    src/rand.h
 )

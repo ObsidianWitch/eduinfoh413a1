@@ -27,6 +27,7 @@
 
 #include "instance.h"
 #include "utilities.h"
+#include "rand.h"
 
 #define BUFSIZE 1024
 
