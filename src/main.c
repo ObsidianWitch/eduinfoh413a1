@@ -48,7 +48,7 @@ char* readOpts(int argc, char **argv) {
 
     if (!fileName) {
         printf("No instance file provided (use -i <instance_name>). Exiting.\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     
     return fileName;
@@ -68,7 +68,7 @@ int main (int argc, char **argv) {
 
     if (argc < 2) {
         printf("No instance file provided (use -i <instance_name>). Exiting.\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     /* Read parameters */
@@ -153,5 +153,5 @@ int main (int argc, char **argv) {
     printf("Time elapsed since we started the timer: %g\n\n",
         elapsed_time(VIRTUAL));
 
-    return 0;
+    return EXIT_SUCCESS;
 }
