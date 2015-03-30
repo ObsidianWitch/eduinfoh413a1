@@ -16,4 +16,6 @@ add_executable(lop
     src/timer.h
     src/utilities.c
     src/utilities.h
+    src/options.c
+    src/options.h
 )
