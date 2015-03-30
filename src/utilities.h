@@ -21,11 +21,6 @@
 #ifndef _UTILITIES_H_
 #define _UTILITIES_H_
 
-#define PREV 0
-#define NEXT 1
-#define E_START 0
-#define E_END 1
-
 long int **createMatrix (long int i);
 
 extern void fatal (char *s);
