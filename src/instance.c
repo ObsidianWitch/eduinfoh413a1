@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <stdbool.h>
 
 #include "instance.h"
 #include "utilities.h"
@@ -101,10 +102,10 @@ long int **readInstance(const char *filename) {
             fatal( buffer );
         }
         
-        for (t = FALSE, k = buffer; *k != '\n'; k++) {
+        for (t = false, k = buffer; *k != '\n'; k++) {
             if ( ( ( *k >= '0' ) && (*k <= '9') ) || ( *k == '-' ) ) {
                 if ( !t ) {
-                    t = TRUE;
+                    t = true;
                     r[i][j] = atoi( k );
                     
                     if ( (++j) == PSize ) {
@@ -113,7 +114,7 @@ long int **readInstance(const char *filename) {
                     }
                 }
             } else {
-                t = FALSE;
+                t = false;
             }
         }
     }
