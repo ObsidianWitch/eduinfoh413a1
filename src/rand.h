@@ -14,10 +14,10 @@ extern long int Seed; /* seed for the random number generator */
 
 int rand0N(int limit); // TODO uh?
 
-extern double ran01( long *idum );
+double ran01( long *idum );
 
-extern int randInt(int minimum, int maximum);
+int randInt(int minimum, int maximum);
 
-extern long int * generate_random_vector(long int dim );
+long int * generate_random_vector(long int dim );
 
 #endif // _RAND_H_

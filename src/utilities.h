@@ -22,7 +22,6 @@
 #define _UTILITIES_H_
 
 long int **createMatrix (long int i);
-
-extern void fatal (char *s);
+void fatal(char *s);
 
 #endif

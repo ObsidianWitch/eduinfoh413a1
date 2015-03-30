@@ -33,3 +33,6 @@ C 0 0 -
 * lopOpts_t struct
 * lopOpts_t can be initialized with emptyLopOpts ([source](http://goo.gl/21VvQQ))
 * http://www.ibm.com/developerworks/aix/library/au-unix-getopt.html
+
+# Others
+* [extern keyword](http://www.geeksforgeeks.org/understanding-extern-keyword-in-c/)
