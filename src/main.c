@@ -29,16 +29,21 @@
 #include "timer.h"
 #include "optimization.h"
 
+typedef struct lopOpts_t {
+    char *fileName;
+} lopOpts_t;
 
-char* readOpts(int argc, char **argv) {
+static const lopOpts_t emptyLopOpts;
+
+lopOpts_t readOpts(int argc, char **argv) {
     char opt;
-    char *fileName = NULL;
+    lopOpts_t lopOpts = emptyLopOpts;
 
-    while ( (opt = getopt(argc, argv, "i:")) > 0 ) {
+    while ((opt = getopt(argc, argv, "i:")) > 0) {
         switch (opt) {
             case 'i': /* Instance file */
-                fileName = (char *)malloc(strlen(optarg)+1);
-                strncpy(fileName, optarg, strlen(optarg));
+                lopOpts.fileName = (char *) malloc(strlen(optarg) + 1);
+                strncpy(lopOpts.fileName, optarg, strlen(optarg));
                 break;
             
             default:
@@ -46,12 +51,12 @@ char* readOpts(int argc, char **argv) {
         }
     }
 
-    if (!fileName) {
+    if (!lopOpts.fileName) {
         printf("No instance file provided (use -i <instance_name>). Exiting.\n");
         exit(EXIT_FAILURE);
     }
     
-    return fileName;
+    return lopOpts;
 }
 
 
@@ -60,7 +65,7 @@ int main (int argc, char **argv) {
     long int i,j;
     long int *currentSolution;
     int cost, newCost, temp, firstRandomPosition, secondRandomPosition;
-    char *fileName;
+    lopOpts_t lopOpts;
 
     /* Do not buffer output */
     setbuf(stdout,NULL);
@@ -72,10 +77,10 @@ int main (int argc, char **argv) {
     }
 
     /* Read parameters */
-    fileName = readOpts(argc, argv);
+    lopOpts = readOpts(argc, argv);
 
     /* Read instance file */
-    CostMat = readInstance(fileName);
+    CostMat = readInstance(lopOpts.fileName);
     printf("Data have been read from instance file. Size of instance = %ld.\n\n",
         PSize);
 
