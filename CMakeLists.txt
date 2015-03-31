@@ -8,4 +8,6 @@ include_directories(src)
 
 add_executable(lop
     src/main.cpp
+    src/Instance.cpp
+    src/Instance.hpp
 )
