@@ -11,9 +11,16 @@ optimization?
 * the same seed should be used for one instance -> possible solutions: generate
 seed based on filename or on the instance size
 
-# Reading options
+# Parse Command Line Arguments
 
 * getopt
 * lopOpts_t struct
 * lopOpts_t can be initialized with emptyLopOpts ([source](http://goo.gl/21VvQQ))
 * http://www.ibm.com/developerworks/aix/library/au-unix-getopt.html
+* http://www.boost.org/doc/libs/1_36_0/doc/html/program_options.html
+
+# RNG
+
+* https://en.wikipedia.org/wiki/C%2B%2B11#Extensible_random_number_facility
+* http://en.cppreference.com/w/cpp/numeric/random
+* http://www.stroustrup.com/#std-random
