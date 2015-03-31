@@ -16,11 +16,18 @@ seed based on filename or on the instance size
 * getopt
 * lopOpts_t struct
 * lopOpts_t can be initialized with emptyLopOpts ([source](http://goo.gl/21VvQQ))
-* http://www.ibm.com/developerworks/aix/library/au-unix-getopt.html
-* http://www.boost.org/doc/libs/1_36_0/doc/html/program_options.html
+* <http://www.ibm.com/developerworks/aix/library/au-unix-getopt.html>
+* <http://www.boost.org/doc/libs/1_57_0/doc/html/program_options.html>
 
 # RNG
 
-* https://en.wikipedia.org/wiki/C%2B%2B11#Extensible_random_number_facility
-* http://en.cppreference.com/w/cpp/numeric/random
-* http://www.stroustrup.com/#std-random
+* <https://en.wikipedia.org/wiki/C%2B%2B11#Extensible_random_number_facility>
+* <http://en.cppreference.com/w/cpp/numeric/random>
+* <http://www.stroustrup.com/#std-random>
+
+# LOLIB
+
+"LOLIB is a library of sample instances for the linear ordering problem. LOLIB
+includes data as well as optimum solution values."
+
+<http://www.optsicom.es/lolib/>
