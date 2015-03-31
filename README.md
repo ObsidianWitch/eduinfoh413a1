@@ -1,5 +1,9 @@
 # Heuristic Optimization 1st assignment : Iterative Improvement
 
+## Description
+
+<!-- TODO -->
+
 ## Compilation
 
 ~~~
@@ -11,6 +15,4 @@
 
 ## Run on one instance
 
-~~~
-./lop -i instances/N-tiw56r72_250
-~~~
+<!-- TODO -->
