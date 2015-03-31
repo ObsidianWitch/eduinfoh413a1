@@ -11,6 +11,20 @@ optimization?
 * the same seed should be used for one instance -> possible solutions: generate
 seed based on filename or on the instance size
 
+# Algorithm configuration
+
+* 12 combination
+* pivoting rule (-p)
+    * first improvement
+    * best improvement
+* neighbourhood (-n)
+    * transpose
+    * exchange
+    * insert
+* init solution (-i)
+    * random permutation
+    * CW heuristic
+
 # Parse Command Line Arguments
 
 * getopt
@@ -31,3 +45,14 @@ seed based on filename or on the instance size
 includes data as well as optimum solution values."
 
 <http://www.optsicom.es/lolib/>
+
+# Architecture Ideas
+
+* input (e.g. --first --transpose --rand instance) --> program -->
+    * AlgorithmBuilder ab();
+    * ab.setPivotingRule(String pivotingRule)
+        .setNeighborhood(String neighborhood)
+        .setInitialSolution(String initSolution)
+        .setFilePath(String filePath);
+    * Algorithm a = ab.build();
+    * a.run();
