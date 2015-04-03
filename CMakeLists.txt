@@ -13,3 +13,9 @@ add_executable(lop
     src/Permutation.cpp
     src/Permutation.hpp
 )
+
+add_executable(test_load_instance
+    src/tests/load_instance.cpp
+    src/Instance.cpp
+    src/Instance.hpp
+)
