@@ -12,4 +12,5 @@ add_executable(lop
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
+    src/Neighbourhood.hpp
 )

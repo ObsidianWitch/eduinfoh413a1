@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "Instance.hpp"
 #include "Permutation.hpp"
+#include "Neighbourhood.hpp"
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -18,6 +19,28 @@ int main(int argc, char *argv[]) {
     std::cout << p;
     p.permute(0, 2);
     std::cout << p;
+
+    // Test neighbourhoods
+    Neighbourhood n1(5, Neighbourhood::TRANSPOSE);
+    while (n1.hasNext()) {
+        std::cout << n1;
+        n1.next();
+    }
+    std::cout << std::endl;
+
+    Neighbourhood n2(5, Neighbourhood::EXCHANGE);
+    while (n2.hasNext()) {
+        std::cout << n2;
+        n2.next();
+    }
+    std::cout << std::endl;
+
+    Neighbourhood n3(5, Neighbourhood::INSERTION);
+    while (n3.hasNext()) {
+        std::cout << n3;
+        n3.next();
+    }
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
 }

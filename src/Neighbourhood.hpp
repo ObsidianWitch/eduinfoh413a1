@@ -8,11 +8,10 @@ public:
     static const unsigned INSERTION = 3;
 
     Neighbourhood(unsigned size, unsigned step) :
-        size_(size), step_(step)
+        i_(0), size_(size), step_(step)
     {}
 
-    void start() { i_ = 0; };
-    bool is_valid() { i_ < size_; }
+    bool hasNext() { return i_ + step_ <= size_; }
     void next() { i_ += step_; }
 
     operator unsigned() const { return i_; }
