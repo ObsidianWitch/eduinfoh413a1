@@ -19,3 +19,9 @@ add_executable(test_load_instance
     src/Instance.cpp
     src/Instance.hpp
 )
+
+add_executable(test_permutation
+    src/tests/permutation.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+)

@@ -13,11 +13,5 @@ int main(int argc, char *argv[]) {
     std::cout << "size: " << instance.size() << std::endl
               << instance.matrix() << std::endl;
 
-    // Test permutation
-    Permutation p(10);
-    std::cout << p;
-    p.permute(0, 2);
-    std::cout << p;
-
     return EXIT_SUCCESS;
 }
