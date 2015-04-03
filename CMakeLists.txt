@@ -10,4 +10,6 @@ add_executable(lop
     src/main.cpp
     src/Instance.cpp
     src/Instance.hpp
+    src/Permutation.cpp
+    src/Permutation.hpp
 )
