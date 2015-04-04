@@ -27,3 +27,9 @@ add_executable(test_permutation
     src/Permutation.cpp
     src/Permutation.hpp
 )
+
+add_executable(test_neighbourhoods
+    src/tests/neighbourhoods.cpp
+    src/Neighbourhood.cpp
+    src/Neighbourhood.hpp
+)

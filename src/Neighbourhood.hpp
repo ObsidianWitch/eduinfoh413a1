@@ -18,6 +18,9 @@ public:
     void next();
 
     operator Point() const;
+    
+    unsigned first();
+    unsigned second();
 
 protected:
     Point p_;
