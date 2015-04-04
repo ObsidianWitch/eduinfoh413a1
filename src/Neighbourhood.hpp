@@ -2,14 +2,9 @@
 #define NEIGHBOURHOOD_HPP
 
 #include <utility>
+#include <iostream>
 
 typedef std::pair<unsigned, unsigned> Point;
-
-std::ostream& operator<<(std::ostream& ostr, const Point& p) {
-    ostr << "(" << p.first << "," << p.second << ")";
-
-    return ostr;
-}
 
 class Neighbourhood {
 public:
@@ -17,22 +12,19 @@ public:
     static const unsigned EXCHANGE  = 2;
     static const unsigned INSERTION = 3;
 
-    Neighbourhood(unsigned size, unsigned step) :
-        p_(0,step), size_(size), step_(step)
-    {}
+    Neighbourhood(unsigned size, unsigned step);
 
-    bool hasNext() { return p_.first + step_ < size_; }
-    void next() {
-        p_.first++;
-        p_.second = p_.first + step_;
-    }
+    bool hasNext();
+    void next();
 
-    operator Point() const { return p_; }
+    operator Point() const;
 
 protected:
     Point p_;
     unsigned size_;
     unsigned step_;
 };
+
+std::ostream& operator<<(std::ostream& ostr, const Point& p);
 
 #endif // NEIGHBOURHOOD_HPP
