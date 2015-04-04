@@ -23,24 +23,23 @@ int main(int argc, char *argv[]) {
     // Test neighbourhoods
     Neighbourhood n1(5, Neighbourhood::TRANSPOSE);
     while (n1.hasNext()) {
-        std::cout << n1;
+        std::cout << n1 << std::endl;
         n1.next();
     }
     std::cout << std::endl;
 
     Neighbourhood n2(5, Neighbourhood::EXCHANGE);
     while (n2.hasNext()) {
-        std::cout << n2;
+        std::cout << n2 << std::endl;
         n2.next();
     }
     std::cout << std::endl;
 
     Neighbourhood n3(5, Neighbourhood::INSERTION);
     while (n3.hasNext()) {
-        std::cout << n3;
+        std::cout << n3 << std::endl;
         n3.next();
     }
-    std::cout << std::endl;
 
     return EXIT_SUCCESS;
 }

@@ -1,6 +1,16 @@
 #ifndef NEIGHBOURHOOD_HPP
 #define NEIGHBOURHOOD_HPP
 
+#include <utility>
+
+typedef std::pair<unsigned, unsigned> Point;
+
+std::ostream& operator<<(std::ostream& ostr, const Point& p) {
+    ostr << "(" << p.first << "," << p.second << ")";
+
+    return ostr;
+}
+
 class Neighbourhood {
 public:
     static const unsigned TRANSPOSE = 1;
@@ -8,16 +18,19 @@ public:
     static const unsigned INSERTION = 3;
 
     Neighbourhood(unsigned size, unsigned step) :
-        i_(0), size_(size), step_(step)
+        p_(0,step), size_(size), step_(step)
     {}
 
-    bool hasNext() { return i_ + step_ <= size_; }
-    void next() { i_ += step_; }
+    bool hasNext() { return p_.first + step_ < size_; }
+    void next() {
+        p_.first++;
+        p_.second = p_.first + step_;
+    }
 
-    operator unsigned() const { return i_; }
+    operator Point() const { return p_; }
 
 protected:
-    unsigned i_;
+    Point p_;
     unsigned size_;
     unsigned step_;
 };
