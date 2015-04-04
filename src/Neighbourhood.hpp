@@ -14,7 +14,7 @@ public:
 
     Neighbourhood(unsigned size, unsigned step);
 
-    bool hasNext();
+    bool isValid();
     void next();
 
     operator Point() const;

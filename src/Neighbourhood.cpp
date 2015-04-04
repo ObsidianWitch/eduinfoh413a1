@@ -4,7 +4,7 @@ Neighbourhood::Neighbourhood(unsigned size, unsigned step) :
     p_(0,step), size_(size), step_(step)
 {}
 
-bool Neighbourhood::hasNext() {
+bool Neighbourhood::isValid() {
     return p_.first + step_ < size_;
 }
 

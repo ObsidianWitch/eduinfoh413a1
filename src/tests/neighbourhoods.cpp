@@ -5,7 +5,9 @@
 
 void testPrint() {
     Neighbourhood n(5, Neighbourhood::TRANSPOSE);
-    while (n.hasNext()) {
+
+    std::cout << "Neighbourhood::TRANSPOSE" << std::endl;
+    while (n.isValid()) {
         std::cout << n << std::endl;
         n.next();
     }
@@ -22,7 +24,7 @@ void testTranspose() {
     n.next();
     assert(n.first() == 3 && n.second() == 4);
     n.next();
-    assert(!n.hasNext());
+    assert(!n.isValid());
 }
 
 void testExchange() {
@@ -33,7 +35,7 @@ void testExchange() {
     n.next();
     assert(n.first() == 2 && n.second() == 4);
     n.next();
-    assert(!n.hasNext());
+    assert(!n.isValid());
 }
 
 void testInsertion() {
@@ -42,7 +44,7 @@ void testInsertion() {
     n.next();
     assert(n.first() == 1 && n.second() == 4);
     n.next();
-    assert(!n.hasNext());
+    assert(!n.isValid());
 }
 
 int main() {
