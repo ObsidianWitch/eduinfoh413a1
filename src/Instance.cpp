@@ -55,6 +55,21 @@ std::string Instance::toStringMatrixPermutation(const Permutation& p) {
     return os.str();
 }
 
+int Instance::operator()(unsigned i, unsigned j) const {
+    return matrix_(i,j);
+}
+
+int& Instance::operator()(unsigned i, unsigned j)
+{
+    return matrix_(i,j);
+}
+
 unsigned Instance::size() const { return size_; }
 ublas::matrix<int> Instance::matrix() const { return matrix_; }
 long int Instance::totalSum() const { return totalSum_; }
+
+std::ostream& operator<<(std::ostream& ostr,
+    const Instance& instance)
+{
+    return operator<<(ostr, instance.matrix_);
+}

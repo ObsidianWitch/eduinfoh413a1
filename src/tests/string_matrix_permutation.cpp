@@ -6,7 +6,7 @@
 int main() {
     Instance instance("../instances/test1");
     std::cout << "instance matrix" << std::endl
-              << instance.matrix() << std::endl << std::endl;
+              << instance << std::endl << std::endl;
 
     Permutation p(instance.size());
     p.permute(0,1);

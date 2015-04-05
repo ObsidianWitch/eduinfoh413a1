@@ -17,6 +17,11 @@ public:
     
     std::string toStringMatrixPermutation(const Permutation& p);
     
+    int operator()(unsigned i, unsigned j) const;
+    int& operator()(unsigned i, unsigned j);
+    friend std::ostream& operator<<(std::ostream& ostr,
+        const Instance& instance);
+    
     unsigned size() const;
     ublas::matrix<int> matrix() const;
     long int totalSum() const;
