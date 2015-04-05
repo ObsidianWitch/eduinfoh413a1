@@ -8,7 +8,7 @@
 #include "Instance.hpp"
 
 int main() {
-    Instance instance("../instances/test1");
+    Instance instance("../instances/test2");
     Permutation p(instance.size());
     std::cout << "instance matrix" << std::endl
               << instance << std::endl;
