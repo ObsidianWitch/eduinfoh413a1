@@ -19,7 +19,7 @@ int main() {
     std::cout << "test matrix" << std::endl
               << testMatrix << std::endl << std::endl;
     
-    Instance instance("../instances/test");
+    Instance instance("../instances/test1");
     std::cout << "instance matrix" << std::endl
               << instance.matrix() << std::endl << std::endl;
     
