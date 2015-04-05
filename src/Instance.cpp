@@ -26,33 +26,62 @@ void Instance::parseToMatrix() {
     }
 }
 
-// TODO streamMatrixPermutation
-void Instance::printMatrixPermutation(const Permutation& p) {
-    unsigned size = p.size();
+long int Instance::evaluate(const Permutation& p) const {
+    long int score = 0;
     
-    std::cout << "[" << size << ","<< size << "]" << "(";
-    
-    for (unsigned i = 0 ; i < size ; i++) {
-        std::cout << "(";
-        
-        for (unsigned j = 0 ; j < size ; j++) {
-            std::cout << matrix_(p[i], p[j]);
-            
-            if (j < size - 1) {
-                std::cout << ",";
-            }
-        }
-        
-        std::cout << ")";
-        
-        if (i < size - 1) {
-            std::cout << ",";
+    for (unsigned i = 0 ; i < size() ; i++) {
+        for (unsigned j = i + 1 ; j < size() ; j++) {
+            score += matrix_(p[i],p[j]);
         }
     }
     
-    std::cout << ")";
+    return score;
+}
+
+std::string Instance::toStringMatrixPermutation(const Permutation& p) {
+    std::ostringstream os;
+    unsigned size = p.size();
+    
+    os << "[" << size << "," << size << "]" << "(";
+    
+    for (unsigned i = 0 ; i < size ; i++) {
+        os << "(";
+        
+        for (unsigned j = 0 ; j < size ; j++) {
+            os << matrix_(p[i], p[j]);
+            
+            if (j < size - 1) {
+                os << ",";
+            }
+        }
+        
+        os << ")";
+        
+        if (i < size - 1) {
+            os << ",";
+        }
+    }
+    
+    os << ")";
+    
+    return os.str();
+}
+
+int Instance::operator()(unsigned i, unsigned j) const {
+    return matrix_(i,j);
+}
+
+int& Instance::operator()(unsigned i, unsigned j)
+{
+    return matrix_(i,j);
 }
 
 unsigned Instance::size() const { return size_; }
 ublas::matrix<int> Instance::matrix() const { return matrix_; }
 long int Instance::totalSum() const { return totalSum_; }
+
+std::ostream& operator<<(std::ostream& ostr,
+    const Instance& instance)
+{
+    return operator<<(ostr, instance.matrix_);
+}

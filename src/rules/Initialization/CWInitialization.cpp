@@ -1,29 +1,10 @@
-#include <functional>
-#include "Initialization.hpp"
+#include "CWInitialization.hpp"
 
-RandomInit::RandomInit(long int seed, unsigned size) :
-    randomEngine_(seed), size_(size)
-{}
-
-Permutation RandomInit::generateInitialization() {
-    std::uniform_int_distribution<unsigned> distribution(0, size_ - 1);
-    auto generator = std::bind(distribution, randomEngine_);
-    Permutation randomPermutation(size_);
-    
-    for (unsigned i = 0 ; i < randomPermutation.size() ; i++) {
-        unsigned randomIndex = generator();
-        
-        randomPermutation.permute(i, randomIndex);
-    }
-    
-    return randomPermutation;
-}
-
-CWInit::CWInit(const Instance& instance) :
+CWInitialization::CWInitialization(const Instance& instance) :
     instance_(instance)
 {}
 
-Permutation CWInit::generateInitialization() {
+Permutation CWInitialization::generateInitialization() {
     unsigned size = instance_.size();
     
     Permutation permutation(size);
@@ -43,7 +24,7 @@ Permutation CWInit::generateInitialization() {
 /**
  * Pick the best row at the specified step.
  */
-unsigned CWInit::evaluateRows(const Permutation& permutation, unsigned step) {
+unsigned CWInitialization::evaluateRows(const Permutation& permutation, unsigned step) {
     unsigned bestRow = step;
     long int bestRowScore = -1;
     
@@ -59,7 +40,7 @@ unsigned CWInit::evaluateRows(const Permutation& permutation, unsigned step) {
     return bestRow;
 }
 
-long int CWInit::evaluateRow(const Permutation& permutation, unsigned row,
+long int CWInitialization::evaluateRow(const Permutation& permutation, unsigned row,
     unsigned step)
 {
     const ublas::matrix<int> &matrix = instance_.matrix();

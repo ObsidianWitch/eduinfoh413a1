@@ -18,6 +18,7 @@ public:
     // Accessors
     unsigned size() const;
     void resize(unsigned size);
+    
 private:
     std::vector<unsigned> indices_;
     unsigned size_;

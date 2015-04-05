@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "Instance.hpp"
-#include "Permutation.hpp"
-#include "Neighbourhood.hpp"
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -12,7 +10,7 @@ int main(int argc, char *argv[]) {
 
     Instance instance(argv[1]);
     std::cout << "size: " << instance.size() << std::endl
-              << instance.matrix() << std::endl;
+              << instance << std::endl;
 
     return EXIT_SUCCESS;
 }

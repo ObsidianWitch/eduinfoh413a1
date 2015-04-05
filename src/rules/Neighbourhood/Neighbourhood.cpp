@@ -1,8 +1,12 @@
 #include "Neighbourhood.hpp"
 
 Neighbourhood::Neighbourhood(unsigned size, unsigned step) :
-    p_(0,step), size_(size), step_(step)
+    size_(size), step_(step)
 {}
+    
+void Neighbourhood::start() {
+    p_ = std::make_pair(0, step_);
+}
 
 bool Neighbourhood::isValid() {
     return p_.first + step_ < size_;

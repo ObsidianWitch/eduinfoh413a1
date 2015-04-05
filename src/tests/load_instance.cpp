@@ -21,7 +21,7 @@ int main() {
     
     Instance instance("../instances/test1");
     std::cout << "instance matrix" << std::endl
-              << instance.matrix() << std::endl << std::endl;
+              << instance << std::endl << std::endl;
     
     assert(ublas::detail::equals(testMatrix, instance.matrix(), 1.e-6, 0.));
     

@@ -12,14 +12,16 @@ add_executable(lop
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/Neighbourhood.cpp
-    src/Neighbourhood.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
 )
 
 add_executable(test_load_instance
     src/tests/load_instance.cpp
     src/Instance.cpp
     src/Instance.hpp
+    src/Permutation.cpp
+    src/Permutation.hpp
 )
 
 add_executable(test_permutation
@@ -30,16 +32,56 @@ add_executable(test_permutation
 
 add_executable(test_neighbourhoods
     src/tests/neighbourhoods.cpp
-    src/Neighbourhood.cpp
-    src/Neighbourhood.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
 )
 
 add_executable(test_random_init
     src/tests/random_init.cpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/Initialization.cpp
-    src/Initialization.hpp
+    src/rules/Initialization/RandomInitialization.cpp
+    src/rules/Initialization/RandomInitialization.hpp
+)
+
+add_executable(test_string_matrix_permutation
+    src/tests/string_matrix_permutation.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+)
+
+add_executable(test_evaluate
+    src/tests/evaluate.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+)
+
+add_executable(test_first_improvement
+    src/tests/first_improvement.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/FirstImprovement.cpp
+    src/rules/Pivoting/FirstImprovement.hpp
+)
+
+add_executable(test_best_improvement
+    src/tests/best_improvement.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/BestImprovement.cpp
+    src/rules/Pivoting/BestImprovement.hpp
 )
 
 add_executable(test_cw_init
@@ -48,6 +90,6 @@ add_executable(test_cw_init
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/Initialization.cpp
-    src/Initialization.hpp
+    src/rules/Initialization/CWInitialization.cpp
+    src/rules/Initialization/CWInitialization.hpp
 )

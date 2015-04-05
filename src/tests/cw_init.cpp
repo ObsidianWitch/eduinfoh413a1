@@ -1,22 +1,23 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include "Instance.hpp"
 #include "Permutation.hpp"
-#include "Initialization.hpp"
+#include "rules/Initialization/CWInitialization.hpp"
 
 int main() {
-    Instance instance("../instances/test2");
+    Instance instance("../instances/test3");
     std::cout << "instance matrix" << std::endl
               << instance.matrix() << std::endl << std::endl;
     
-    CWInit init(instance);
+    CWInitialization init(instance);
     Permutation p = init.generateInitialization();
     
     std::cout << "permutation" << std::endl << p;
     
-    std::cout << "instance matrix with permutation"  << std::endl;
-    instance.printMatrixPermutation(p);
-    std::cout << std::endl;
+    std::cout << "instance matrix with permutation"  << std::endl
+              << instance.toStringMatrixPermutation(p)
+              << std::endl;
     
     return EXIT_SUCCESS;
 }
