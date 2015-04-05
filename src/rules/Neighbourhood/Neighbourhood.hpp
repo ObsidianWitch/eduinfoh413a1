@@ -13,7 +13,8 @@ public:
     static const unsigned INSERTION = 3;
 
     Neighbourhood(unsigned size, unsigned step);
-
+    
+    void start();
     bool isValid();
     void next();
 
