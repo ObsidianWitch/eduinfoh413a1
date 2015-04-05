@@ -17,13 +17,16 @@ int main() {
         testMatrix(i,j) = k;
     }
     std::cout << "test matrix" << std::endl
-              << testMatrix << std::endl;
+              << testMatrix << std::endl << std::endl;
     
     Instance instance("../instances/test");
     std::cout << "instance matrix" << std::endl
-              << instance.matrix() << std::endl;
+              << instance.matrix() << std::endl << std::endl;
     
     assert(ublas::detail::equals(testMatrix, instance.matrix(), 1.e-6, 0.));
+    
+    std::cout << "instance totalSum: " << instance.totalSum() << std::endl;
+    assert(instance.totalSum() == 300);
     
     return EXIT_SUCCESS;
 }

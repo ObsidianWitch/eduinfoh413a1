@@ -15,11 +15,13 @@ public:
     
     unsigned size();
     ublas::matrix<int> matrix();
-    
+    int totalSum();
+
 private:
     std::string filePath_;
     unsigned size_;
     ublas::matrix<int> matrix_;
+    int totalSum_;
 };
 
 #endif // INSTANCE_HPP
