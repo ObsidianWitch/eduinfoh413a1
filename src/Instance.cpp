@@ -26,6 +26,33 @@ void Instance::parseToMatrix() {
     }
 }
 
-unsigned Instance::size() { return size_; }
-ublas::matrix<int> Instance::matrix() { return matrix_; }
-long int Instance::totalSum() { return totalSum_; }
+// TODO streamMatrixPermutation
+void Instance::printMatrixPermutation(const Permutation& p) {
+    unsigned size = p.size();
+    
+    std::cout << "[" << size << ","<< size << "]" << "(";
+    
+    for (unsigned i = 0 ; i < size ; i++) {
+        std::cout << "(";
+        
+        for (unsigned j = 0 ; j < size ; j++) {
+            std::cout << matrix_(p[i], p[j]);
+            
+            if (j < size - 1) {
+                std::cout << ",";
+            }
+        }
+        
+        std::cout << ")";
+        
+        if (i < size - 1) {
+            std::cout << ",";
+        }
+    }
+    
+    std::cout << ")";
+}
+
+unsigned Instance::size() const { return size_; }
+ublas::matrix<int> Instance::matrix() const { return matrix_; }
+long int Instance::totalSum() const { return totalSum_; }

@@ -7,15 +7,19 @@
 #include <boost/numeric/ublas/io.hpp>
 namespace ublas = boost::numeric::ublas;
 
+#include "Permutation.hpp"
+
 class Instance {
 public:
     Instance(std::string filePath);
     
     void parseToMatrix();
     
-    unsigned size();
-    ublas::matrix<int> matrix();
-    long int totalSum();
+    void printMatrixPermutation(const Permutation& p);
+    
+    unsigned size() const;
+    ublas::matrix<int> matrix() const;
+    long int totalSum() const;
 
 private:
     std::string filePath_;
