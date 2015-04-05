@@ -12,8 +12,8 @@ add_executable(lop
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/rules/Neighbourhood.cpp
-    src/rules/Neighbourhood.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
 )
 
 add_executable(test_load_instance
@@ -32,24 +32,24 @@ add_executable(test_permutation
 
 add_executable(test_neighbourhoods
     src/tests/neighbourhoods.cpp
-    src/rules/Neighbourhood.cpp
-    src/rules/Neighbourhood.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
 )
 
 add_executable(test_random_init
     src/tests/random_init.cpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/rules/Initialization.cpp
-    src/rules/Initialization.hpp
+    src/rules/Initialization/Initialization.cpp
+    src/rules/Initialization/Initialization.hpp
 )
 
 add_executable(test_string_matrix_permutation
     src/tests/string_matrix_permutation.cpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/rules/Initialization.cpp
-    src/rules/Initialization.hpp
+    src/rules/Initialization/Initialization.cpp
+    src/rules/Initialization/Initialization.hpp
     src/Instance.cpp
     src/Instance.hpp
 )

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include "rules/Neighbourhood.hpp"
+#include "rules/Neighbourhood/Neighbourhood.hpp"
 
 void testPrint() {
     Neighbourhood n(5, Neighbourhood::TRANSPOSE);
