@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include "Instance.hpp"
-#include "Permutation.hpp"
-#include "Neighbourhood.hpp"
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {

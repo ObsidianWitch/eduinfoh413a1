@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cassert>
 #include "Permutation.hpp"
-#include "Initialization.hpp"
+#include "rules/Initialization.hpp"
 
 int main() {
     RandomInit init(std::mt19937::default_seed, 10);
