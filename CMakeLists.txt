@@ -41,3 +41,13 @@ add_executable(test_random_init
     src/Initialization.cpp
     src/Initialization.hpp
 )
+
+add_executable(test_cw_init
+    src/tests/cw_init.cpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Initialization.cpp
+    src/Initialization.hpp
+)
