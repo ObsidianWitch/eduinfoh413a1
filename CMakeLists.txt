@@ -51,3 +51,11 @@ add_executable(test_string_matrix_permutation
     src/Instance.cpp
     src/Instance.hpp
 )
+
+add_executable(test_evaluate
+    src/tests/evaluate.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+)

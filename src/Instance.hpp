@@ -14,7 +14,7 @@ public:
     Instance(std::string filePath);
     
     void parseToMatrix();
-    
+    long int evaluate(const Permutation& p) const;
     std::string toStringMatrixPermutation(const Permutation& p);
     
     int operator()(unsigned i, unsigned j) const;

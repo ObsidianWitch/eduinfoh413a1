@@ -26,6 +26,18 @@ void Instance::parseToMatrix() {
     }
 }
 
+long int Instance::evaluate(const Permutation& p) const {
+    long int score = 0;
+    
+    for (unsigned i = 0 ; i < size() ; i++) {
+        for (unsigned j = i + 1 ; j < size() ; j++) {
+            score += matrix_(p[i],p[j]);
+        }
+    }
+    
+    return score;
+}
+
 std::string Instance::toStringMatrixPermutation(const Permutation& p) {
     std::ostringstream os;
     unsigned size = p.size();
