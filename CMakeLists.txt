@@ -33,3 +33,11 @@ add_executable(test_neighbourhoods
     src/Neighbourhood.cpp
     src/Neighbourhood.hpp
 )
+
+add_executable(test_random_init
+    src/tests/random_init.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Initialization.cpp
+    src/Initialization.hpp
+)

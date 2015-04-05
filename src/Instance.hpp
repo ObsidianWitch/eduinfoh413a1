@@ -15,7 +15,7 @@ public:
     
     unsigned size();
     ublas::matrix<int> matrix();
-    int totalSum();
+    long int totalSum();
 
 private:
     std::string filePath_;

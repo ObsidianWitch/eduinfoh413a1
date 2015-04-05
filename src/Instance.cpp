@@ -28,4 +28,4 @@ void Instance::parseToMatrix() {
 
 unsigned Instance::size() { return size_; }
 ublas::matrix<int> Instance::matrix() { return matrix_; }
-int Instance::totalSum() { return totalSum_; }
+long int Instance::totalSum() { return totalSum_; }
