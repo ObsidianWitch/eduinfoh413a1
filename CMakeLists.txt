@@ -59,3 +59,15 @@ add_executable(test_evaluate
     src/Instance.cpp
     src/Instance.hpp
 )
+
+add_executable(test_first_improvement
+    src/tests/first_improvement.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/FirstImprovement.cpp
+    src/rules/Pivoting/FirstImprovement.hpp
+)
