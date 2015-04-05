@@ -26,31 +26,33 @@ void Instance::parseToMatrix() {
     }
 }
 
-// TODO streamMatrixPermutation
-void Instance::printMatrixPermutation(const Permutation& p) {
+std::string Instance::toStringMatrixPermutation(const Permutation& p) {
+    std::ostringstream os;
     unsigned size = p.size();
     
-    std::cout << "[" << size << ","<< size << "]" << "(";
+    os << "[" << size << "," << size << "]" << "(";
     
     for (unsigned i = 0 ; i < size ; i++) {
-        std::cout << "(";
+        os << "(";
         
         for (unsigned j = 0 ; j < size ; j++) {
-            std::cout << matrix_(p[i], p[j]);
+            os << matrix_(p[i], p[j]);
             
             if (j < size - 1) {
-                std::cout << ",";
+                os << ",";
             }
         }
         
-        std::cout << ")";
+        os << ")";
         
         if (i < size - 1) {
-            std::cout << ",";
+            os << ",";
         }
     }
     
-    std::cout << ")";
+    os << ")";
+    
+    return os.str();
 }
 
 unsigned Instance::size() const { return size_; }

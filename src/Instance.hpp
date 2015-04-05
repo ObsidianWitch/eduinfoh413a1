@@ -15,7 +15,7 @@ public:
     
     void parseToMatrix();
     
-    void printMatrixPermutation(const Permutation& p);
+    std::string toStringMatrixPermutation(const Permutation& p);
     
     unsigned size() const;
     ublas::matrix<int> matrix() const;

@@ -41,3 +41,13 @@ add_executable(test_random_init
     src/Initialization.cpp
     src/Initialization.hpp
 )
+
+add_executable(test_string_matrix_permutation
+    src/tests/string_matrix_permutation.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Initialization.cpp
+    src/Initialization.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+)
