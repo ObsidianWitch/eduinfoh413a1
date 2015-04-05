@@ -1,11 +1,11 @@
 #include <functional>
-#include "Initialization.hpp"
+#include "RandomInitialization.hpp"
 
-RandomInit::RandomInit(long int seed, unsigned size) :
+RandomInitialization::RandomInitialization(long int seed, unsigned size) :
     randomEngine_(seed), size_(size)
 {}
 
-Permutation RandomInit::generateInitialization() {
+Permutation RandomInitialization::generateInitialization() {
     std::uniform_int_distribution<unsigned> distribution(0, size_ - 1);
     auto generator = std::bind(distribution, randomEngine_);
     Permutation randomPermutation(size_);
