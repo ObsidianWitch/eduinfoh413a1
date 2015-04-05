@@ -71,3 +71,15 @@ add_executable(test_first_improvement
     src/rules/Pivoting/FirstImprovement.cpp
     src/rules/Pivoting/FirstImprovement.hpp
 )
+
+add_executable(test_best_improvement
+    src/tests/best_improvement.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/BestImprovement.cpp
+    src/rules/Pivoting/BestImprovement.hpp
+)
