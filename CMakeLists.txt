@@ -48,6 +48,8 @@ add_executable(test_random_init
     src/tests/random_init.cpp
     src/Permutation.cpp
     src/Permutation.hpp
+    src/Instance.cpp
+    src/Instance.hpp
     src/rules/Initialization/RandomInitialization.cpp
     src/rules/Initialization/RandomInitialization.hpp
 )

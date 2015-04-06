@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include "Instance.hpp"
 #include "Permutation.hpp"
 #include "rules/Initialization/RandomInitialization.hpp"
 
 int main() {
-    RandomInitialization init(std::mt19937::default_seed, 10);
+    Instance instance("../instances/test1");
+    RandomInitialization init(instance);
     Permutation p = init.generateInitialization();
     
     std::cout << p;

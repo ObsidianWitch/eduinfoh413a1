@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
               << g.filePath << std::endl;
 
     Instance instance(g.filePath.c_str());
-    RandomInitialization init(instance.totalSum(), instance.size());
+    RandomInitialization init(instance);
     Neighbourhood n(instance.size(), Neighbourhood::TRANSPOSE);
     FirstImprovement fi(instance, n);
     

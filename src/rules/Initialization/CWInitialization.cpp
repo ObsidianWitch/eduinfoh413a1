@@ -1,7 +1,7 @@
 #include "CWInitialization.hpp"
 
 CWInitialization::CWInitialization(Instance& instance) :
-    instance_(instance)
+    Initialization(instance)
 {}
 
 Permutation CWInitialization::generateInitialization() {

@@ -6,7 +6,7 @@
 
 class RandomInitialization : public Initialization {
 public:
-    RandomInitialization(long int seed, unsigned size);
+    RandomInitialization(Instance& instance);
     
     Permutation generateInitialization();
     

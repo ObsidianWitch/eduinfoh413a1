@@ -1,9 +1,11 @@
 #include <functional>
 #include "RandomInitialization.hpp"
 
-RandomInitialization::RandomInitialization(long int seed, unsigned size) :
-    randomEngine_(seed), size_(size)
+RandomInitialization::RandomInitialization(Instance& instance) :
+    Initialization(instance),
+    randomEngine_(instance.totalSum()), size_(instance.size())
 {}
+
 
 Permutation RandomInitialization::generateInitialization() {
     std::uniform_int_distribution<unsigned> distribution(0, size_ - 1);
