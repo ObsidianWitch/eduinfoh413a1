@@ -3,9 +3,11 @@
 
 #include "Improvement.hpp"
 
-struct BestImprovement : public Improvement {
-    Permutation improve(const Instance& instance, const Permutation& p,
-        Neighbourhood n);
+class BestImprovement : public Improvement {
+public:
+    BestImprovement(const Instance& instance, Neighbourhood n);
+    
+    Permutation improve(const Permutation& p);
 };
 
 #endif // BEST_IMPROVEMENT

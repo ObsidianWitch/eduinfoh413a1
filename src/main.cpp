@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     Instance instance(argv[1]);
     RandomInitialization init(instance.totalSum(), instance.size());
     Neighbourhood n(instance.size(), Neighbourhood::TRANSPOSE);
-    FirstImprovement fi;
+    FirstImprovement fi(instance, n);
     
     Permutation p(instance.size());
     std::cout << "instance size: " << instance.size() << std::endl
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
               << p1 << std::endl;
     
     while (!localOptimum) {
-        Permutation p2 = fi.improve(instance, p1, n);
+        Permutation p2 = fi.improve(p1);
         
         localOptimum = (p1 == p2);
         p1 = p2;

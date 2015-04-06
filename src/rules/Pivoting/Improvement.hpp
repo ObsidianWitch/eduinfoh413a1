@@ -5,9 +5,17 @@
 #include "Instance.hpp"
 #include "Permutation.hpp"
 
-struct Improvement {
-    virtual Permutation improve(const Instance& instance, const Permutation& p,
-        Neighbourhood n) = 0;
+class Improvement {
+public:
+    Improvement(const Instance& instance, Neighbourhood n) :
+        instance_(instance), n_(n)
+    {}
+    
+    virtual Permutation improve(const Permutation& p) = 0;
+        
+protected:
+    const Instance& instance_;
+    Neighbourhood n_;
 };
 
 #endif // IMPROVEMENT

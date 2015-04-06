@@ -16,15 +16,15 @@ int main() {
     
     Neighbourhood n(instance.size(), Neighbourhood::TRANSPOSE);
     
-    FirstImprovement fi;
-    Permutation improvedP = fi.improve(instance, p, n);
+    FirstImprovement fi(instance, n);
+    Permutation improvedP = fi.improve(p);
     
     std::cout << "permutation instance matrix" << std::endl
               << instance.toStringMatrixPermutation(improvedP) << std::endl;
     std::cout << "score: " << instance.evaluate(improvedP) << std::endl
               << std::endl;
               
-    improvedP = fi.improve(instance, improvedP, n);
+    improvedP = fi.improve(improvedP);
 
     std::cout << "permutation instance matrix" << std::endl
             << instance.toStringMatrixPermutation(improvedP) << std::endl;
