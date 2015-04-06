@@ -4,8 +4,7 @@ BestImprovement::BestImprovement(const Instance& instance, Neighbourhood n) :
     Improvement(instance, n)
 {}
 
-Permutation BestImprovement::improve(const Permutation& p)
-{
+Permutation BestImprovement::improve(const Permutation& p) {
     Permutation p1 = p;
     
     n_.start();

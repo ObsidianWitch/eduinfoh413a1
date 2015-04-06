@@ -12,6 +12,8 @@ add_executable(lop
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
+    src/GlobalArgs.cpp
+    src/GlobalArgs.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
     src/rules/Pivoting/FirstImprovement.cpp
