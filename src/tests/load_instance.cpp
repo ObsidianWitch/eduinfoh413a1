@@ -1,20 +1,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/detail/matrix_assign.hpp>
-#include <boost/numeric/ublas/io.hpp>
-namespace ublas = boost::numeric::ublas;
-
 #include "Instance.hpp"
 
 int main() {
-    ublas::matrix<int> testMatrix(5, 5);
+    Matrix testMatrix(5, MatrixRow(5));
     for (unsigned k = 0 ; k < 25 ; k++) {
         unsigned i = k / 5;
         unsigned j = k % 5;
-        testMatrix(i,j) = k;
+        testMatrix[i][j] = k;
     }
     std::cout << "test matrix" << std::endl
               << testMatrix << std::endl << std::endl;
@@ -23,7 +17,7 @@ int main() {
     std::cout << "instance matrix" << std::endl
               << instance << std::endl << std::endl;
     
-    assert(ublas::detail::equals(testMatrix, instance.matrix(), 1.e-6, 0.));
+    assert(testMatrix == instance.matrix());
     
     std::cout << "instance totalSum: " << instance.totalSum() << std::endl;
     assert(instance.totalSum() == 300);

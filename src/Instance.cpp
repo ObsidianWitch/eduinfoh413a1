@@ -1,4 +1,5 @@
 #include <fstream>
+#include <sstream>
 #include "Instance.hpp"
 
 Instance::Instance(std::string filePath) :
@@ -17,11 +18,11 @@ void Instance::parseToMatrix() {
     ss >> size_;
     
     // Matrix
-    matrix_ = ublas::matrix<int>(size_, size_);
-    for (unsigned i = 0 ; i < matrix_.size1() ; i++) {
-        for (unsigned j = 0 ; j < matrix_.size2() ; j++) {
-            ss >> matrix_(i,j);
-            totalSum_ += matrix_(i,j);
+    matrix_ = Matrix(size_, MatrixRow(size_));
+    for (unsigned i = 0 ; i < size_ ; i++) {
+        for (unsigned j = 0 ; j < size_ ; j++) {
+            ss >> matrix_[i][j];
+            totalSum_ += matrix_[i][j];
         }
     }
 }
@@ -31,7 +32,7 @@ long int Instance::evaluate(const Permutation& p) const {
     
     for (unsigned i = 0 ; i < size() ; i++) {
         for (unsigned j = i + 1 ; j < size() ; j++) {
-            score += matrix_(p[i],p[j]);
+            score += matrix_[p[i]][p[j]];
         }
     }
     
@@ -39,18 +40,20 @@ long int Instance::evaluate(const Permutation& p) const {
 }
 
 void Instance::permuteRows(const Permutation& p) {
-    typedef ublas::matrix_row<ublas::matrix<int>> MatrixRow;
-    
-    ublas::matrix<int> copyMatrix(matrix_);
+    Matrix copyMatrix(matrix_);
     
     for (unsigned i = 0 ; i < size() ; i++) {
-        MatrixRow r1(matrix_, i);
-        MatrixRow r2(copyMatrix, p[i]);
-        r1 = r2;
+        matrix_[i] = copyMatrix[p[i]];
     }
 }
 
 std::string Instance::toStringMatrixPermutation(const Permutation& p) const {
+    return toStringMatrixPermutation(matrix_, p);
+}
+
+std::string Instance::toStringMatrixPermutation(const Matrix& matrix,
+    const Permutation& p)
+{
     std::ostringstream os;
     unsigned size = p.size();
     
@@ -60,7 +63,7 @@ std::string Instance::toStringMatrixPermutation(const Permutation& p) const {
         os << "(";
         
         for (unsigned j = 0 ; j < size ; j++) {
-            os << matrix_(p[i], p[j]);
+            os << matrix[p[i]][p[j]];
             
             if (j < size - 1) {
                 os << ",";
@@ -80,20 +83,43 @@ std::string Instance::toStringMatrixPermutation(const Permutation& p) const {
 }
 
 int Instance::operator()(unsigned i, unsigned j) const {
-    return matrix_(i,j);
+    return matrix_[i][j];
 }
 
 int& Instance::operator()(unsigned i, unsigned j)
 {
-    return matrix_(i,j);
+    return matrix_[i][j];
 }
 
 unsigned Instance::size() const { return size_; }
-ublas::matrix<int> Instance::matrix() const { return matrix_; }
+Matrix Instance::matrix() const { return matrix_; }
 long int Instance::totalSum() const { return totalSum_; }
 
-std::ostream& operator<<(std::ostream& ostr,
-    const Instance& instance)
-{
+std::ostream& operator<<(std::ostream& ostr, const Instance& instance) {
     return operator<<(ostr, instance.matrix_);
+}
+
+std::ostream& operator<<(std::ostream& ostr, const Matrix& matrix) {
+    Permutation p(matrix.size());
+    std::string str = Instance::toStringMatrixPermutation(matrix, p);
+    
+    ostr << str;
+    
+    return ostr;
+}
+
+bool operator==(const Matrix& a, const Matrix& b) {
+    if (a.size() != b.size()) {
+        return false;
+    }
+    
+    for (unsigned i = 0 ; i < a.size() ; i++) {
+        for (unsigned j = 0 ; j < b.size() ; j++) {
+            if (a[i][j] != b[i][j]) {
+                return false;
+            }
+        }
+    }
+    
+    return true;
 }

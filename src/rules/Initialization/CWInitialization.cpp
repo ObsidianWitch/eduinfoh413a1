@@ -46,11 +46,10 @@ unsigned CWInitialization::evaluateRows(const Permutation& permutation, unsigned
 long int CWInitialization::evaluateRow(const Permutation& permutation, unsigned row,
     unsigned step)
 {
-    const ublas::matrix<int> &matrix = instance_.matrix();
     long int score = 0;
     
     for (unsigned col = 1 + step ; col < instance_.size() ; col++) {
-        score += matrix(permutation[row], col);
+        score += instance_(permutation[row], col);
     }
     
     return score;

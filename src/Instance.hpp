@@ -2,13 +2,11 @@
 #define INSTANCE_HPP
 
 #include <string>
-
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/matrix_proxy.hpp>
-#include <boost/numeric/ublas/io.hpp>
-namespace ublas = boost::numeric::ublas;
-
+#include <vector>
 #include "Permutation.hpp"
+
+typedef std::vector<int> MatrixRow;
+typedef std::vector<MatrixRow> Matrix;
 
 class Instance {
 public:
@@ -18,6 +16,8 @@ public:
     long int evaluate(const Permutation& p) const;
     void permuteRows(const Permutation& p);
     std::string toStringMatrixPermutation(const Permutation& p) const;
+    static std::string toStringMatrixPermutation(const Matrix& matrix,
+        const Permutation& p);
     
     int operator()(unsigned i, unsigned j) const;
     int& operator()(unsigned i, unsigned j);
@@ -25,14 +25,17 @@ public:
         const Instance& instance);
     
     unsigned size() const;
-    ublas::matrix<int> matrix() const;
+    Matrix matrix() const;
     long int totalSum() const;
 
 private:
     std::string filePath_;
     unsigned size_;
-    ublas::matrix<int> matrix_;
+    Matrix matrix_;
     int totalSum_;
 };
+
+std::ostream& operator<<(std::ostream& ostr, const Matrix& matrix);
+bool operator==(const Matrix& a, const Matrix& b);
 
 #endif // INSTANCE_HPP
