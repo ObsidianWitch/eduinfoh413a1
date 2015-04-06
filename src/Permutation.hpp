@@ -14,6 +14,7 @@ public:
     // Operators
     unsigned operator[](unsigned i) const;
     unsigned& operator[](unsigned i);
+    bool operator ==(const Permutation& b) const;
 
     // Accessors
     unsigned size() const;

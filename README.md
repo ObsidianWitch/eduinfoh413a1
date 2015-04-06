@@ -10,7 +10,7 @@
 > mkdir out
 > cd out
 > cmake ..
-> make
+> make lop
 ~~~
 
 ## Run on one instance

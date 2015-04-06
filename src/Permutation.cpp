@@ -26,6 +26,16 @@ unsigned& Permutation::operator[](unsigned i) {
     return indices_[i];
 }
 
+bool Permutation::operator ==(const Permutation& b) const {
+    for (unsigned i = 0 ; i < size() ; i++) {
+        if (indices_[i] != b[i]) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
 unsigned Permutation::size() const {
     return size_;
 }

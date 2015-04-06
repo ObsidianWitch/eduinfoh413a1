@@ -10,7 +10,10 @@ Permutation FirstImprovement::improve(const Instance& instance,
 
         long int scoreP = instance.evaluate(p);
         long int scoreP2 = instance.evaluate(p2);
+        
         if (scoreP < scoreP2) {
+            // FIXME DEBUG std::cout << scoreP << " -> " << scoreP2 << std::endl;
+
             return p2;
         }
         

@@ -14,6 +14,10 @@ add_executable(lop
     src/Permutation.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/FirstImprovement.cpp
+    src/rules/Pivoting/FirstImprovement.hpp
+    src/rules/Initialization/RandomInitialization.cpp
+    src/rules/Initialization/RandomInitialization.hpp
 )
 
 add_executable(test_load_instance
