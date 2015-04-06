@@ -38,7 +38,19 @@ long int Instance::evaluate(const Permutation& p) const {
     return score;
 }
 
-std::string Instance::toStringMatrixPermutation(const Permutation& p) {
+void Instance::permuteRows(const Permutation& p) {
+    typedef ublas::matrix_row<ublas::matrix<int>> MatrixRow;
+    
+    ublas::matrix<int> copyMatrix(matrix_);
+    
+    for (unsigned i = 0 ; i < size() ; i++) {
+        MatrixRow r1(matrix_, i);
+        MatrixRow r2(copyMatrix, p[i]);
+        r1 = r2;
+    }
+}
+
+std::string Instance::toStringMatrixPermutation(const Permutation& p) const {
     std::ostringstream os;
     unsigned size = p.size();
     

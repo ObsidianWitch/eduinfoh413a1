@@ -4,6 +4,7 @@
 #include <string>
 
 #include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/matrix_proxy.hpp>
 #include <boost/numeric/ublas/io.hpp>
 namespace ublas = boost::numeric::ublas;
 
@@ -15,7 +16,8 @@ public:
     
     void parseToMatrix();
     long int evaluate(const Permutation& p) const;
-    std::string toStringMatrixPermutation(const Permutation& p);
+    void permuteRows(const Permutation& p);
+    std::string toStringMatrixPermutation(const Permutation& p) const;
     
     int operator()(unsigned i, unsigned j) const;
     int& operator()(unsigned i, unsigned j);

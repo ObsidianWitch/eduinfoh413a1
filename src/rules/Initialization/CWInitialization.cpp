@@ -1,22 +1,25 @@
 #include "CWInitialization.hpp"
 
-CWInitialization::CWInitialization(const Instance& instance) :
+CWInitialization::CWInitialization(Instance& instance) :
     instance_(instance)
 {}
 
 Permutation CWInitialization::generateInitialization() {
     unsigned size = instance_.size();
     
-    Permutation permutation(size);
+    // Generate permutation of the rows
+    Permutation rowsPermutation(size);
     
     for (unsigned step = 0 ; step < size ; step++) {
-        unsigned bestRow = evaluateRows(permutation, step);
-        
-        // TODO is that really what we want?
-        // "Construct the solution by inserting one row at a time"
-        // But here we permute the rows AND the columns
-        permutation.permute(step, bestRow);
+        unsigned bestRow = evaluateRows(rowsPermutation, step);
+        rowsPermutation.permute(step, bestRow);
     }
+    
+    // Apply the permutation to the instance's rows
+    instance_.permuteRows(rowsPermutation);
+    
+    // Generate a base permutation
+    Permutation permutation(size);
     
     return permutation;
 }

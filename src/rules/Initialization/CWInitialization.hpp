@@ -6,7 +6,7 @@
 
 class CWInitialization {
 public:
-    CWInitialization(const Instance& instance);
+    CWInitialization(Instance& instance);
     
     Permutation generateInitialization();
     
@@ -15,7 +15,7 @@ private:
     long int evaluateRow(const Permutation& permutation, unsigned row,
         unsigned step);
     
-    const Instance& instance_;
+    Instance& instance_;
 };
 
 #endif // CW_INITIALIZATION
