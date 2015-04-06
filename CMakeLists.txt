@@ -16,10 +16,18 @@ add_executable(lop
     src/GlobalArgs.hpp
     src/IterativeImprovement.cpp
     src/IterativeImprovement.hpp
+    src/rules/RulesFactory.cpp
+    src/rules/RulesFactory.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/Improvement.hpp
     src/rules/Pivoting/FirstImprovement.cpp
     src/rules/Pivoting/FirstImprovement.hpp
+    src/rules/Pivoting/BestImprovement.cpp
+    src/rules/Pivoting/BestImprovement.hpp
+    src/rules/Initialization/Initialization.hpp
+    src/rules/Initialization/CWInitialization.cpp
+    src/rules/Initialization/CWInitialization.hpp
     src/rules/Initialization/RandomInitialization.cpp
     src/rules/Initialization/RandomInitialization.hpp
 )

@@ -10,6 +10,7 @@ public:
     Improvement(const Instance& instance, Neighbourhood n) :
         instance_(instance), n_(n)
     {}
+    virtual ~Improvement() {}
     
     virtual Permutation improve(const Permutation& p) = 0;
         

@@ -7,6 +7,7 @@
 class Initialization {
 public:
     Initialization(Instance& instance) : instance_(instance) {}
+    virtual ~Initialization() {}
     
     virtual Permutation generateInitialization() = 0;
     

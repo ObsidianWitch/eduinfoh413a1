@@ -5,6 +5,7 @@
 #include "rules/Neighbourhood/Neighbourhood.hpp"
 #include "rules/Pivoting/FirstImprovement.hpp"
 #include "IterativeImprovement.hpp"
+#include "rules/RulesFactory.hpp"
 #include "GlobalArgs.hpp"
 #include "Instance.hpp"
 
@@ -20,16 +21,20 @@ int main(int argc, char *argv[]) {
     g.retrieve(argc, argv);
     g.checkArgs();
 
-    std::cout << g.init << " " << g.pivoting << " " << g.neighbourhood << " "
-              << g.filePath << std::endl;
-
     Instance instance(g.filePath.c_str());
-    RandomInitialization init(instance);
-    Neighbourhood n(instance.size(), Neighbourhood::TRANSPOSE);
-    FirstImprovement fi(instance, n);
+    Initialization* initialization = RulesFactory::getInitialization(g.init,
+        instance);
+    Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(g.neighbourhood,
+        instance.size());
+    Improvement* improvement = RulesFactory::getPivotingRule(g.pivoting,
+        instance, *neighbourhood);
     
-    IterativeImprovement ii(instance, init, fi);
+    IterativeImprovement ii(instance, *initialization, *improvement);
     ii.run();
+    
+    delete initialization;
+    delete neighbourhood;
+    delete improvement;
 
     return EXIT_SUCCESS;
 }
