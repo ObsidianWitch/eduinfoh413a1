@@ -10,6 +10,7 @@
 #include "Instance.hpp"
 
 int main(int argc, char *argv[]) {
+    // Arguments handling
     GlobalArgs g(argv[0]);
     
     if (argc < 9) {
@@ -20,18 +21,24 @@ int main(int argc, char *argv[]) {
 
     g.retrieve(argc, argv);
     g.checkArgs();
-
-    Instance instance(g.filePath.c_str());
-    Initialization* initialization = RulesFactory::getInitialization(g.init,
-        instance);
-    Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(g.neighbourhood,
-        instance.size());
-    Improvement* improvement = RulesFactory::getPivotingRule(g.pivoting,
-        instance, *neighbourhood);
     
+    // Algorithm dependencies
+    Instance instance(g.filePath.c_str());
+    Initialization* initialization = RulesFactory::getInitialization(
+        g.init, instance
+    );
+    Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(
+        g.neighbourhood, instance.size()
+    );
+    Improvement* improvement = RulesFactory::getPivotingRule(
+        g.pivoting, instance, *neighbourhood
+    );
+    
+    // IterativeImprovement algorithm
     IterativeImprovement ii(instance, *initialization, *improvement);
     ii.run();
     
+    // Memory handling
     delete initialization;
     delete neighbourhood;
     delete improvement;
