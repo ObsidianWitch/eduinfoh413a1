@@ -33,15 +33,15 @@ add_executable(lop
 )
 
 add_executable(vnd
-    src/main_VND.cpp
+    src/VariableNeighbourhoodDescent/main_VND.cpp
     src/Instance.cpp
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/GlobalArgsVND.cpp
-    src/GlobalArgsVND.hpp
-    src/VariableNeighbourhoodDescent.cpp
-    src/VariableNeighbourhoodDescent.hpp
+    src/VariableNeighbourhoodDescent/GlobalArgsVND.cpp
+    src/VariableNeighbourhoodDescent/GlobalArgsVND.hpp
+    src/VariableNeighbourhoodDescent/VariableNeighbourhoodDescent.cpp
+    src/VariableNeighbourhoodDescent/VariableNeighbourhoodDescent.hpp
     src/rules/RulesFactory.cpp
     src/rules/RulesFactory.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
