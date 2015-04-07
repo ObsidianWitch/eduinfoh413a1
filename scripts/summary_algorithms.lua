@@ -12,10 +12,21 @@ function retrieveInstances()
     
     return tInstances, nInstances
 end
+instances, nInstances = retrieveInstances()
+
+scriptProgression = 0
+function scriptProgress()
+    scriptProgression = scriptProgression + 1
+    
+    local total = 12 * nInstances + 2 * nInstances
+    print("[" .. scriptProgression .. "/" .. total .. "]")
+end
 
 function computeIIInstance(initialization, pivotingRule, neighbourhood)
     for k, instance in pairs(instances) do
-        os.execute("../out/lop"
+        scriptProgress()
+        -- FIXME os.execute("../out/lop"
+        print("../out/lop"
             .. " -i " .. initialization
             .. " -p " .. pivotingRule
             .. " -n " .. neighbourhood
@@ -29,8 +40,6 @@ ii_initialization_opts = { "cw", "random" }
 ii_pivoting_opts = { "first", "best" }
 ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
 vnd_neighbourhood_opts = { "tei", "tie" }
-
-instances, nInstances = retrieveInstances()
 
 for k1, initialization in pairs(ii_initialization_opts) do
     for k2, pivotingRule in pairs(ii_pivoting_opts) do
