@@ -7,15 +7,15 @@ SET(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11 -O3")
 include_directories(src)
 
 add_executable(lop
-    src/main_II.cpp
+    src/IterativeImprovement/main_II.cpp
     src/Instance.cpp
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/GlobalArgsII.cpp
-    src/GlobalArgsII.hpp
-    src/IterativeImprovement.cpp
-    src/IterativeImprovement.hpp
+    src/IterativeImprovement/GlobalArgsII.cpp
+    src/IterativeImprovement/GlobalArgsII.hpp
+    src/IterativeImprovement/IterativeImprovement.cpp
+    src/IterativeImprovement/IterativeImprovement.hpp
     src/rules/RulesFactory.cpp
     src/rules/RulesFactory.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
