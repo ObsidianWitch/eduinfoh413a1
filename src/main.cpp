@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <chrono>
 
 #include "rules/Initialization/RandomInitialization.hpp"
 #include "rules/Neighbourhood/Neighbourhood.hpp"
@@ -10,6 +11,8 @@
 #include "Instance.hpp"
 
 int main(int argc, char *argv[]) {
+    using namespace std::chrono;
+    
     // Arguments handling
     GlobalArgs g(argv[0]);
     
@@ -36,7 +39,10 @@ int main(int argc, char *argv[]) {
     
     // IterativeImprovement algorithm
     IterativeImprovement ii(instance, *initialization, *improvement);
+    auto start = high_resolution_clock::now();
     ii.run();
+    duration<double> timeElapsed = high_resolution_clock::now() - start;
+    std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     
     // Memory handling
     delete initialization;
