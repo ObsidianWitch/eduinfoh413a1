@@ -5,9 +5,9 @@
 
 class BestImprovement : public Improvement {
 public:
-    BestImprovement(const Instance& instance, Neighbourhood n);
+    BestImprovement(const Instance& instance);
     
-    Permutation improve(const Permutation& p);
+    Permutation improve(const Permutation& p, Neighbourhood& n);
 };
 
 #endif // BEST_IMPROVEMENT

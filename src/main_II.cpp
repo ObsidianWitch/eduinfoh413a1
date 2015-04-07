@@ -31,11 +31,12 @@ int main(int argc, char *argv[]) {
         g.neighbourhood, instance.size()
     );
     Improvement* improvement = RulesFactory::getPivotingRule(
-        g.pivoting, instance, *neighbourhood
+        g.pivoting, instance
     );
     
     // IterativeImprovement algorithm
-    IterativeImprovement ii(instance, *initialization, *improvement);
+    IterativeImprovement ii(instance, *initialization, *improvement,
+        *neighbourhood);
     auto start = high_resolution_clock::now();
     ii.run();
     duration<double> timeElapsed = high_resolution_clock::now() - start;

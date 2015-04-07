@@ -1,14 +1,14 @@
 #include "FirstImprovement.hpp"
 
-FirstImprovement::FirstImprovement(const Instance& instance, Neighbourhood n) :
-    Improvement(instance, n)
+FirstImprovement::FirstImprovement(const Instance& instance) :
+    Improvement(instance)
 {}
 
-Permutation FirstImprovement::improve(const Permutation& p) {
-    n_.start();
-    while(n_.isValid()) {
+Permutation FirstImprovement::improve(const Permutation& p, Neighbourhood& n) {
+    n.start();
+    while(n.isValid()) {
         Permutation p2 = p;
-        p2.permute(n_.first(), n_.second());
+        p2.permute(n.first(), n.second());
 
         long int scoreP = instance_.evaluate(p);
         long int scoreP2 = instance_.evaluate(p2);
@@ -19,7 +19,7 @@ Permutation FirstImprovement::improve(const Permutation& p) {
             return p2;
         }
         
-        n_.next();
+        n.next();
     }
     
     return p;

@@ -1,16 +1,16 @@
 #include "BestImprovement.hpp"
 
-BestImprovement::BestImprovement(const Instance& instance, Neighbourhood n) :
-    Improvement(instance, n)
+BestImprovement::BestImprovement(const Instance& instance) :
+    Improvement(instance)
 {}
 
-Permutation BestImprovement::improve(const Permutation& p) {
+Permutation BestImprovement::improve(const Permutation& p, Neighbourhood& n) {
     Permutation p1 = p;
     
-    n_.start();
-    while(n_.isValid()) {
+    n.start();
+    while(n.isValid()) {
         Permutation p2 = p;
-        p2.permute(n_.first(), n_.second());
+        p2.permute(n.first(), n.second());
 
         long int scoreP1 = instance_.evaluate(p1);
         long int scoreP2 = instance_.evaluate(p2);
@@ -18,7 +18,7 @@ Permutation BestImprovement::improve(const Permutation& p) {
             p1 = p2;
         }
         
-        n_.next();
+        n.next();
     }
     
     return p1;

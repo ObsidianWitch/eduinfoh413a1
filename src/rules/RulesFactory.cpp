@@ -19,13 +19,13 @@ Initialization* RulesFactory::getInitialization(std::string initialization,
 }
 
 Improvement* RulesFactory::getPivotingRule(std::string pivotingRule,
-    Instance& instance, Neighbourhood& n)
+    Instance& instance)
 {
     if (pivotingRule == "first") {
-        return new FirstImprovement(instance, n);
+        return new FirstImprovement(instance);
     }
     else if (pivotingRule == "best") {
-        return new BestImprovement(instance, n);
+        return new BestImprovement(instance);
     }
     
     exit(EXIT_FAILURE);

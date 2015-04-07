@@ -10,7 +10,7 @@ struct RulesFactory {
     static Initialization* getInitialization(std::string initialization,
         Instance& instance);
     static Improvement* getPivotingRule(std::string pivotingRule,
-        Instance& instance, Neighbourhood& n);
+        Instance& instance);
     static Neighbourhood* getNeighbourhood(std::string neighbourhood,
         unsigned size);
     static Neighbourhood** getVNDNeighbourhood(std::string neighbourhood,

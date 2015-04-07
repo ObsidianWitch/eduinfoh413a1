@@ -8,7 +8,7 @@
 class IterativeImprovement {
 public:
     IterativeImprovement(Instance& instance_, Initialization& initialization,
-        Improvement& improvement);
+        Improvement& improvement, Neighbourhood& Neighbourhood);
     
     void run();
 
@@ -16,6 +16,7 @@ private:
     Instance& instance_;
     Initialization& initialization_;
     Improvement& improvement_;
+    Neighbourhood& neighbourhood_;
 };
 
 #endif // ITERATIVE_IMPROVEMENT_HPP

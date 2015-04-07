@@ -27,15 +27,16 @@ int main(int argc, char *argv[]) {
     // Algorithm dependencies
     Instance instance(g.filePath.c_str());
     CWInitialization initialization(instance);
+    // FIXME FirstImprovement improvement(instance);
     Neighbourhood** neighbourhood = RulesFactory::getVNDNeighbourhood(
         g.neighbourhood, instance.size()
     );
-    // FIXME FirstImprovement improvement(instance, *neighbourhood);
     
     // VND algorithm
-    // FIXME IterativeImprovement ii(instance, initialization, improvement);
+    /* FIXME VariableNeighbourhoodDescent vnd(instance, initialization, improvement,
+        neighbourhood); */
     auto start = high_resolution_clock::now();
-    // FIXME ii.run();
+    // FIXME vnd.run();
     duration<double> timeElapsed = high_resolution_clock::now() - start;
     std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     

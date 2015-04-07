@@ -1,9 +1,10 @@
 #include "IterativeImprovement.hpp"
 
 IterativeImprovement::IterativeImprovement(Instance& instance,
-    Initialization& initialization, Improvement& improvement) :
+    Initialization& initialization, Improvement& improvement,
+    Neighbourhood& neighbourhood) :
     instance_(instance), initialization_(initialization),
-    improvement_(improvement)
+    improvement_(improvement), neighbourhood_(neighbourhood)
 {}
 
 void IterativeImprovement::run() {
@@ -18,7 +19,7 @@ void IterativeImprovement::run() {
               << p1 << std::endl;
     
     while (!localOptimum) {
-        Permutation p2 = improvement_.improve(p1);
+        Permutation p2 = improvement_.improve(p1, neighbourhood_);
         
         localOptimum = (p1 == p2);
         p1 = p2;
