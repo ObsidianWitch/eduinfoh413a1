@@ -13,25 +13,29 @@ function retrieveInstances()
     return tInstances, nInstances
 end
 
+function computeIIInstance(initialization, pivotingRule, neighbourhood)
+    for k, instance in pairs(instances) do
+        os.execute("../out/lop"
+            .. " -i " .. initialization
+            .. " -p " .. pivotingRule
+            .. " -n " .. neighbourhood
+            .. " -f " .. instance
+        )
+        print()
+    end
+end
+
 ii_initialization_opts = { "cw", "random" }
 ii_pivoting_opts = { "first", "best" }
-ii_neighbourood_opts = { "transpose", "exchange", "insertion" }
-vnd_neighbourood_opts = { "tei", "tie" }
+ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
+vnd_neighbourhood_opts = { "tei", "tie" }
 
 instances, nInstances = retrieveInstances()
 
-for k1, init in pairs(ii_initialization_opts) do
-    for k2, piv in pairs(ii_pivoting_opts) do
-        for k3, n in pairs(ii_neighbourood_opts) do
-            for k4, instance in pairs(instances) do
-                os.execute("../out/lop"
-                    .. " -i " .. init
-                    .. " -p " .. piv
-                    .. " -n " .. n
-                    .. " -f " .. instance
-                )
-                print()
-            end
+for k1, initialization in pairs(ii_initialization_opts) do
+    for k2, pivotingRule in pairs(ii_pivoting_opts) do
+        for k3, neighbourhood in pairs(ii_neighbourhood_opts) do
+            computeIIInstance(initialization, pivotingRule, neighbourhood)
         end
     end
 end
