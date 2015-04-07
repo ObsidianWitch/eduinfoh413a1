@@ -22,6 +22,26 @@ function scriptProgress()
     print("[" .. scriptProgression .. "/" .. total .. "]")
 end
 
+function extractData(instance)
+    local finalScore, bestKnownScore, timeElapsed
+    
+    for line in instance:lines() do
+        if finalScore == nil then
+            finalScore = line:match("final solution %(score: (%d+)")
+        end
+        
+        if bestKnownScore == nil then
+            bestKnownScore = line:match("best known score: (%d+)")
+        end
+        
+        if timeElapsed  == nil then
+            timeElapsed = line:match("Time elapsed: (%d+.%d+) s")
+        end
+    end
+    
+    return finalScore, bestKnownScore, timeElapsed
+end
+
 function computeIIInstance(initialization, pivotingRule, neighbourhood)
     for k, instance in pairs(instances) do
         scriptProgress()
@@ -64,3 +84,15 @@ end
 for k1, neighbourhood in pairs(vnd_neighbourhood_opts) do
     computeVNDInstance(neighbourhood)
 end
+
+---[[FIXME BEGIN TEST ONLY
+local testInstance = io.popen("../out/lop -i random -p first -n transpose -f ../instances/N-t65f11xx_150")
+
+local finalScore, bestKnownScore, timeElapsed = extractData(testInstance)
+
+print(finalScore)
+print(bestKnownScore)
+print(timeElapsed)
+-- FIXME END TEST ONLY
+--]]
+ 
