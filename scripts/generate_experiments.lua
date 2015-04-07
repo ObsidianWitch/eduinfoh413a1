@@ -28,7 +28,7 @@ function scriptProgress()
 end
 
 function extractWriteData(instance, instanceName, file)
-    local finalScore, bestKnownScore, timeElapsed
+    local finalScore, bestKnownScore, delta, timeElapsed
     
     for line in instance:lines() do
         if finalScore == nil then
@@ -44,8 +44,10 @@ function extractWriteData(instance, instanceName, file)
         end
     end
     
+    delta = 100 * (bestKnownScore - finalScore)/bestKnownScore
+    
     file:write(instanceName .. " " .. finalScore .. " " .. bestKnownScore
-        .. " " .. timeElapsed .. "\n")
+        .. " ".. delta .. " " .. timeElapsed .. "\n")
 end
 
 function computeIIInstance(file, initialization, pivotingRule, neighbourhood)
@@ -79,12 +81,12 @@ function computeVNDInstance(file, neighbourhood)
 end
 
 -- Main
-os.execute("mkdir -p ../out/summary/")
+os.execute("mkdir -p ../out/experiments/")
 
 for k1, initialization in pairs(ii_initialization_opts) do
     for k2, pivotingRule in pairs(ii_pivoting_opts) do
         for k3, neighbourhood in pairs(ii_neighbourhood_opts) do
-            local fileName = "../out/summary/ii_"
+            local fileName = "../out/experiments/ii_"
                 .. initialization .. "_"
                 .. pivotingRule .. "_"
                 .. neighbourhood
@@ -98,7 +100,7 @@ for k1, initialization in pairs(ii_initialization_opts) do
 end
 
 for k1, neighbourhood in pairs(vnd_neighbourhood_opts) do
-    local fileName = "../out/summary/vnd_"
+    local fileName = "../out/experiments/vnd_"
         .. neighbourhood
     local file = io.open(fileName, "a")
     
