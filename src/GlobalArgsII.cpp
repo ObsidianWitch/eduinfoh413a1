@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#include "GlobalArgs.hpp"
+#include "GlobalArgsII.hpp"
 
-GlobalArgs::GlobalArgs(std::string programName) : programName(programName) {}
+GlobalArgsII::GlobalArgsII(std::string programName) : programName(programName) {}
 
-void GlobalArgs::retrieve(int argc, char *argv[]) {
+void GlobalArgsII::retrieve(int argc, char *argv[]) {
     int opt;
     while ((opt = getopt(argc, argv, "i:p:n:f:")) != -1) {
         switch(opt) {
@@ -31,7 +31,7 @@ void GlobalArgs::retrieve(int argc, char *argv[]) {
     }
 }
 
-void GlobalArgs::checkArgs() const {
+void GlobalArgsII::checkArgs() const {
     checkEmpty();
     checkInitialization();
     checkPivotingRule();
@@ -39,7 +39,7 @@ void GlobalArgs::checkArgs() const {
     checkFilePath();
 }
 
-void GlobalArgs::checkEmpty() const {
+void GlobalArgsII::checkEmpty() const {
     bool empty = init.empty() || pivoting.empty() || neighbourhood.empty() ||
         filePath.empty();
     
@@ -50,7 +50,7 @@ void GlobalArgs::checkEmpty() const {
     }
 }
 
-void GlobalArgs::checkInitialization() const {
+void GlobalArgsII::checkInitialization() const {
     bool valid = (init == "cw") || (init == "random");
     
     if (!valid) {
@@ -60,7 +60,7 @@ void GlobalArgs::checkInitialization() const {
     }
 }
 
-void GlobalArgs::checkPivotingRule() const {
+void GlobalArgsII::checkPivotingRule() const {
     bool valid = (pivoting == "first") || (pivoting == "best");
     
     if (!valid) {
@@ -70,7 +70,7 @@ void GlobalArgs::checkPivotingRule() const {
     }
 }
 
-void GlobalArgs::checkNeighborhood() const {
+void GlobalArgsII::checkNeighborhood() const {
     bool valid = (neighbourhood == "transpose") ||
                  (neighbourhood == "exchange") ||
                  (neighbourhood == "insertion");
@@ -82,7 +82,7 @@ void GlobalArgs::checkNeighborhood() const {
     }
 }
 
-void GlobalArgs::checkFilePath() const {
+void GlobalArgsII::checkFilePath() const {
     std::ifstream ifs(filePath.c_str());
     
     if (!ifs.good()) {
@@ -91,7 +91,7 @@ void GlobalArgs::checkFilePath() const {
     }
 }
 
-void GlobalArgs::printHelp() const {
+void GlobalArgsII::printHelp() const {
     std::cout << "Usage:" << programName
               << " -i <initialization_rule (cw|random)>" << std::endl
               << "\t-p <pivoting_rule (first|best)>" << std::endl

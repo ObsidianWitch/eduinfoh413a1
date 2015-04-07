@@ -4,14 +4,14 @@
 
 #include "rules/RulesFactory.hpp"
 #include "IterativeImprovement.hpp"
-#include "GlobalArgs.hpp"
+#include "GlobalArgsII.hpp"
 #include "Instance.hpp"
 
 int main(int argc, char *argv[]) {
     using namespace std::chrono;
     
     // Arguments handling
-    GlobalArgs g(argv[0]);
+    GlobalArgsII g(argv[0]);
     
     if (argc < 9) {
         std::cout << "Missing argument" << std::endl;

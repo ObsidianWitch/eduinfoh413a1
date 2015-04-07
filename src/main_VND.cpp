@@ -2,16 +2,18 @@
 #include <cstdlib>
 #include <chrono>
 
-#include "IterativeImprovement.hpp"
+#include "rules/Initialization/CWInitialization.hpp"
+#include "rules/Pivoting/FirstImprovement.hpp"
 #include "rules/RulesFactory.hpp"
-#include "GlobalArgs.hpp"
+#include "IterativeImprovement.hpp"
+#include "GlobalArgsII.hpp"
 #include "Instance.hpp"
 
 int main(int argc, char *argv[]) {
     using namespace std::chrono;
     
     // Arguments handling
-    GlobalArgs g(argv[0]);
+    GlobalArgsII g(argv[0]);
     
     if (argc < 9) {
         std::cout << "Missing argument" << std::endl;
@@ -31,16 +33,14 @@ int main(int argc, char *argv[]) {
     FirstImprovement improvement(instance, *neighbourhood);
     
     // IterativeImprovement algorithm
-    IterativeImprovement ii(instance, *initialization, *improvement);
+    IterativeImprovement ii(instance, initialization, improvement);
     auto start = high_resolution_clock::now();
     ii.run();
     duration<double> timeElapsed = high_resolution_clock::now() - start;
     std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     
     // Memory handling
-    delete initialization;
     delete neighbourhood;
-    delete improvement;
 
     return EXIT_SUCCESS;
 }

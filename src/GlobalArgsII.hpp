@@ -1,14 +1,14 @@
-#ifndef GLOBAL_ARGS_HPP
-#define GLOBAL_ARGS_HPP
+#ifndef GLOBAL_ARGS_II_HPP
+#define GLOBAL_ARGS_II_HPP
 
-struct GlobalArgs {
+struct GlobalArgsII {
     std::string programName;
     std::string init;
     std::string pivoting;
     std::string neighbourhood;
     std::string filePath;
     
-    GlobalArgs(std::string programName);
+    GlobalArgsII(std::string programName);
     
     void retrieve(int argc, char *argv[]);
     
@@ -22,4 +22,4 @@ struct GlobalArgs {
     void printHelp() const;
 };
 
-#endif // GLOBAL_ARGS_HPP
+#endif // GLOBAL_ARGS_II_HPP
