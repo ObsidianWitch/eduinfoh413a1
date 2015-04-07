@@ -7,7 +7,7 @@ SET(CMAKE_CXX_FLAGS "-Wall -Wextra -std=c++11 -O3")
 include_directories(src)
 
 add_executable(lop
-    src/main.cpp
+    src/main_II.cpp
     src/Instance.cpp
     src/Instance.hpp
     src/Permutation.cpp
