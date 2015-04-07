@@ -36,6 +36,18 @@ function computeIIInstance(initialization, pivotingRule, neighbourhood)
     end
 end
 
+function computeVNDInstance(neighbourhood)
+    for k, instance in pairs(instances) do
+        scriptProgress()
+        -- FIXME os.execute("../out/vnd"
+        print("../out/vnd"
+            .. " -n " .. neighbourhood
+            .. " -f " .. instance
+        )
+        print()
+    end
+end
+
 ii_initialization_opts = { "cw", "random" }
 ii_pivoting_opts = { "first", "best" }
 ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
@@ -47,4 +59,8 @@ for k1, initialization in pairs(ii_initialization_opts) do
             computeIIInstance(initialization, pivotingRule, neighbourhood)
         end
     end
+end
+
+for k1, neighbourhood in pairs(vnd_neighbourhood_opts) do
+    computeVNDInstance(neighbourhood)
 end
