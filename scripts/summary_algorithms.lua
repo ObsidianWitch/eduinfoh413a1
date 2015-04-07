@@ -23,7 +23,7 @@ scriptProgression = 0
 function scriptProgress()
     scriptProgression = scriptProgression + 1
     
-    local total = 12 * nInstances + 2 * nInstances
+    local total = 14 * nInstances
     print("[" .. scriptProgression .. "/" .. total .. "]")
 end
 
@@ -42,67 +42,67 @@ function extractWriteData(instance, instanceName, file)
         if timeElapsed  == nil then
             timeElapsed = line:match("Time elapsed: (%d+.%d+) s")
         end
-        
-        --print(line)
     end
     
     file:write(instanceName .. " " .. finalScore .. " " .. bestKnownScore
         .. " " .. timeElapsed .. "\n")
-    
-    return finalScore, bestKnownScore, timeElapsed
 end
 
-function computeIIInstance(initialization, pivotingRule, neighbourhood)
-    for k, instance in pairs(instances) do
+function computeIIInstance(file, initialization, pivotingRule, neighbourhood)
+    for k, instanceName in pairs(instances) do
         scriptProgress()
-        -- FIXME os.execute("../out/lop"
-        print("../out/lop"
+        
+        local command = "../out/lop"
             .. " -i " .. initialization
             .. " -p " .. pivotingRule
             .. " -n " .. neighbourhood
-            .. " -f " .. instance
-        )
-        print()
+            .. " -f " .. instanceName
+        print(command .. "\n")
+        
+        local instance = io.popen(command)
+        extractWriteData(instance, instanceName, file)
     end
 end
 
-function computeVNDInstance(neighbourhood)
-    for k, instance in pairs(instances) do
+function computeVNDInstance(file, neighbourhood)
+    for k, instanceName in pairs(instances) do
         scriptProgress()
-        -- FIXME os.execute("../out/vnd"
-        print("../out/vnd"
+        
+        local command = "../out/vnd"
             .. " -n " .. neighbourhood
-            .. " -f " .. instance
-        )
-        print()
+            .. " -f " .. instanceName
+        print(command .. "\n")
+        
+        local instance = io.popen(command)
+        extractWriteData(instance, instanceName, file)
     end
 end
+
+-- Main
+os.execute("mkdir -p ../out/summary/")
 
 for k1, initialization in pairs(ii_initialization_opts) do
     for k2, pivotingRule in pairs(ii_pivoting_opts) do
         for k3, neighbourhood in pairs(ii_neighbourhood_opts) do
-            computeIIInstance(initialization, pivotingRule, neighbourhood)
+            local fileName = "../out/summary/ii_"
+                .. initialization .. "_"
+                .. pivotingRule .. "_"
+                .. neighbourhood
+            local file = io.open(fileName, "a")
+            
+            computeIIInstance(file, initialization, pivotingRule, neighbourhood)
+            
+            file:close()
         end
     end
 end
 
 for k1, neighbourhood in pairs(vnd_neighbourhood_opts) do
-    computeVNDInstance(neighbourhood)
+    local fileName = "../out/summary/vnd_"
+        .. neighbourhood
+    local file = io.open(fileName, "a")
+    
+    computeVNDInstance(file, neighbourhood)
+    
+    file:close()
 end
-
----[[FIXME BEGIN TEST ONLY
-local instanceName = "../instances/N-t65f11xx_150"
-local testInstance = io.popen("../out/lop -i random -p first -n transpose -f "
-    .. instanceName)
-
-local file = io.open("test", "a")
-local finalScore, bestKnownScore, timeElapsed = extractWriteData(testInstance,
-    instanceName, file)
-file:close()
-
-print(finalScore)
-print(bestKnownScore)
-print(timeElapsed)
--- FIXME END TEST ONLY
---]]
- 
