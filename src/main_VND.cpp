@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     
     // Memory handling
-    for (unsigned i = 0 ; i < 3 ; i++) {ç
+    for (unsigned i = 0 ; i < 3 ; i++) {
         delete neighbourhoods[i];
     }
     delete[] neighbourhoods;
