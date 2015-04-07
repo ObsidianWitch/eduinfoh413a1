@@ -32,6 +32,32 @@ add_executable(lop
     src/rules/Initialization/RandomInitialization.hpp
 )
 
+add_executable(vnd
+    src/main_VND.cpp
+    src/Instance.cpp
+    src/Instance.hpp
+    src/Permutation.cpp
+    src/Permutation.hpp
+    src/GlobalArgs.cpp
+    src/GlobalArgs.hpp
+    src/IterativeImprovement.cpp
+    src/IterativeImprovement.hpp
+    src/rules/RulesFactory.cpp
+    src/rules/RulesFactory.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Pivoting/Improvement.hpp
+    src/rules/Pivoting/FirstImprovement.cpp
+    src/rules/Pivoting/FirstImprovement.hpp
+    src/rules/Pivoting/BestImprovement.cpp
+    src/rules/Pivoting/BestImprovement.hpp
+    src/rules/Initialization/Initialization.hpp
+    src/rules/Initialization/CWInitialization.cpp
+    src/rules/Initialization/CWInitialization.hpp
+    src/rules/Initialization/RandomInitialization.cpp
+    src/rules/Initialization/RandomInitialization.hpp
+)
+
 add_executable(test_load_instance
     src/tests/load_instance.cpp
     src/Instance.cpp
