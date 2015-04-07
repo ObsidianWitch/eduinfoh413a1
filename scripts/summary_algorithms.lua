@@ -1,5 +1,10 @@
 #!/usr/bin/lua
 
+ii_initialization_opts = { "cw", "random" }
+ii_pivoting_opts = { "first", "best" }
+ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
+vnd_neighbourhood_opts = { "tei", "tie" }
+
 function retrieveInstances()
     local instances = io.popen('ls ../instances/N-*')
     local tInstances = {}
@@ -22,7 +27,7 @@ function scriptProgress()
     print("[" .. scriptProgression .. "/" .. total .. "]")
 end
 
-function extractData(instance)
+function extractWriteData(instance, instanceName, file)
     local finalScore, bestKnownScore, timeElapsed
     
     for line in instance:lines() do
@@ -37,7 +42,12 @@ function extractData(instance)
         if timeElapsed  == nil then
             timeElapsed = line:match("Time elapsed: (%d+.%d+) s")
         end
+        
+        --print(line)
     end
+    
+    file:write(instanceName .. " " .. finalScore .. " " .. bestKnownScore
+        .. " " .. timeElapsed .. "\n")
     
     return finalScore, bestKnownScore, timeElapsed
 end
@@ -68,11 +78,6 @@ function computeVNDInstance(neighbourhood)
     end
 end
 
-ii_initialization_opts = { "cw", "random" }
-ii_pivoting_opts = { "first", "best" }
-ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
-vnd_neighbourhood_opts = { "tei", "tie" }
-
 for k1, initialization in pairs(ii_initialization_opts) do
     for k2, pivotingRule in pairs(ii_pivoting_opts) do
         for k3, neighbourhood in pairs(ii_neighbourhood_opts) do
@@ -86,9 +91,14 @@ for k1, neighbourhood in pairs(vnd_neighbourhood_opts) do
 end
 
 ---[[FIXME BEGIN TEST ONLY
-local testInstance = io.popen("../out/lop -i random -p first -n transpose -f ../instances/N-t65f11xx_150")
+local instanceName = "../instances/N-t65f11xx_150"
+local testInstance = io.popen("../out/lop -i random -p first -n transpose -f "
+    .. instanceName)
 
-local finalScore, bestKnownScore, timeElapsed = extractData(testInstance)
+local file = io.open("test", "a")
+local finalScore, bestKnownScore, timeElapsed = extractWriteData(testInstance,
+    instanceName, file)
+file:close()
 
 print(finalScore)
 print(bestKnownScore)
