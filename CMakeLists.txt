@@ -38,8 +38,8 @@ add_executable(vnd
     src/Instance.hpp
     src/Permutation.cpp
     src/Permutation.hpp
-    src/GlobalArgsII.cpp
-    src/GlobalArgsII.hpp
+    src/GlobalArgsVND.cpp
+    src/GlobalArgsVND.hpp
     src/IterativeImprovement.cpp
     src/IterativeImprovement.hpp
     src/rules/RulesFactory.cpp

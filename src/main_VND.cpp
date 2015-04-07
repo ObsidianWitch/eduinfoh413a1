@@ -6,16 +6,16 @@
 #include "rules/Pivoting/FirstImprovement.hpp"
 #include "rules/RulesFactory.hpp"
 #include "IterativeImprovement.hpp"
-#include "GlobalArgsII.hpp"
+#include "GlobalArgsVND.hpp"
 #include "Instance.hpp"
 
 int main(int argc, char *argv[]) {
     using namespace std::chrono;
     
     // Arguments handling
-    GlobalArgsII g(argv[0]);
+    GlobalArgsVND g(argv[0]);
     
-    if (argc < 9) {
+    if (argc < 5) {
         std::cout << "Missing argument" << std::endl;
         g.printHelp();
         return EXIT_FAILURE;
@@ -27,20 +27,20 @@ int main(int argc, char *argv[]) {
     // Algorithm dependencies
     Instance instance(g.filePath.c_str());
     CWInitialization initialization(instance);
-    Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(
+    /* FIXME Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(
         g.neighbourhood, instance.size()
-    );
-    FirstImprovement improvement(instance, *neighbourhood);
+    );*/
+    // FIXME FirstImprovement improvement(instance, *neighbourhood);
     
-    // IterativeImprovement algorithm
-    IterativeImprovement ii(instance, initialization, improvement);
+    // VND algorithm
+    // FIXME IterativeImprovement ii(instance, initialization, improvement);
     auto start = high_resolution_clock::now();
-    ii.run();
+    // FIXME ii.run();
     duration<double> timeElapsed = high_resolution_clock::now() - start;
     std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     
     // Memory handling
-    delete neighbourhood;
+    // FIXME delete neighbourhood;
 
     return EXIT_SUCCESS;
 }
