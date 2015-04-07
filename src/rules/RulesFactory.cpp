@@ -46,3 +46,23 @@ Neighbourhood* RulesFactory::getNeighbourhood(std::string neighbourhood,
     
     exit(EXIT_FAILURE);
 }
+
+Neighbourhood** RulesFactory::getVNDNeighbourhood(std::string neighbourhood,
+    unsigned size)
+{
+    Neighbourhood** n = new Neighbourhood*[3];
+    Neighbourhood* nt = new Neighbourhood(size, Neighbourhood::TRANSPOSE);
+    Neighbourhood* ne = new Neighbourhood(size, Neighbourhood::EXCHANGE);
+    Neighbourhood* ni = new Neighbourhood(size, Neighbourhood::INSERTION);
+    
+    if (neighbourhood == "tei") {
+        n[0] = nt; n[1] = ne; n[2] = ni;
+        return n;
+    }
+    else if (neighbourhood == "tie") {
+        n[0] = nt; n[1] = ni; n[2] = ne;
+        return n;
+    }
+    
+    exit(EXIT_FAILURE);
+}

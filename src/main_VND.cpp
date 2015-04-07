@@ -27,9 +27,9 @@ int main(int argc, char *argv[]) {
     // Algorithm dependencies
     Instance instance(g.filePath.c_str());
     CWInitialization initialization(instance);
-    /* FIXME Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(
+    Neighbourhood** neighbourhood = RulesFactory::getVNDNeighbourhood(
         g.neighbourhood, instance.size()
-    );*/
+    );
     // FIXME FirstImprovement improvement(instance, *neighbourhood);
     
     // VND algorithm
@@ -40,7 +40,10 @@ int main(int argc, char *argv[]) {
     std::cout << "Time elapsed: " << timeElapsed.count() << " s" << std::endl;
     
     // Memory handling
-    // FIXME delete neighbourhood;
+    for (unsigned i = 0 ; i < 3 ; i++) {
+        delete neighbourhood[i];
+    }
+    delete[] neighbourhood;
 
     return EXIT_SUCCESS;
 }

@@ -13,6 +13,8 @@ struct RulesFactory {
         Instance& instance, Neighbourhood& n);
     static Neighbourhood* getNeighbourhood(std::string neighbourhood,
         unsigned size);
+    static Neighbourhood** getVNDNeighbourhood(std::string neighbourhood,
+        unsigned size);
 };
 
 #endif // RULES_FACTORY_HPP
