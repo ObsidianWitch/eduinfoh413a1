@@ -2,9 +2,6 @@
 #include <cstdlib>
 #include <chrono>
 
-#include "rules/Initialization/RandomInitialization.hpp"
-#include "rules/Neighbourhood/Neighbourhood.hpp"
-#include "rules/Pivoting/FirstImprovement.hpp"
 #include "IterativeImprovement.hpp"
 #include "rules/RulesFactory.hpp"
 #include "GlobalArgs.hpp"
@@ -27,15 +24,11 @@ int main(int argc, char *argv[]) {
     
     // Algorithm dependencies
     Instance instance(g.filePath.c_str());
-    Initialization* initialization = RulesFactory::getInitialization(
-        g.init, instance
-    );
+    CWInitialization initialization(instance);
     Neighbourhood* neighbourhood = RulesFactory::getNeighbourhood(
         g.neighbourhood, instance.size()
     );
-    Improvement* improvement = RulesFactory::getPivotingRule(
-        g.pivoting, instance, *neighbourhood
-    );
+    FirstImprovement improvement(instance, *neighbourhood);
     
     // IterativeImprovement algorithm
     IterativeImprovement ii(instance, *initialization, *improvement);
