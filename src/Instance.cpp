@@ -3,7 +3,7 @@
 #include "Instance.hpp"
 
 Instance::Instance(std::string filePath) :
-    filePath_(filePath), totalSum_(0)
+    filePath_(filePath), totalSum_(0), bestScore_(-1)
 {
     parseToMatrix();
 }
@@ -86,14 +86,37 @@ int Instance::operator()(unsigned i, unsigned j) const {
     return matrix_[i][j];
 }
 
-int& Instance::operator()(unsigned i, unsigned j)
-{
+int& Instance::operator()(unsigned i, unsigned j) {
     return matrix_[i][j];
 }
 
 unsigned Instance::size() const { return size_; }
 Matrix Instance::matrix() const { return matrix_; }
 long int Instance::totalSum() const { return totalSum_; }
+
+long int Instance::bestScore() {
+    if (bestScore_ != -1) {
+        return bestScore_;
+    }
+    
+    std::ifstream ifs("../best_known/best_known.txt");
+    std::stringstream ss;
+    ss << ifs.rdbuf();
+    
+    while (ifs.good()) {
+        std::string fileName;
+        long int bestScore;
+        
+        ss >> fileName >> bestScore;
+        
+        if (filePath_.find(fileName) != std::string::npos) {
+            bestScore_ = bestScore;
+            break;
+        }
+    }
+    
+    return bestScore_;
+}
 
 std::ostream& operator<<(std::ostream& ostr, const Instance& instance) {
     return operator<<(ostr, instance.matrix_);

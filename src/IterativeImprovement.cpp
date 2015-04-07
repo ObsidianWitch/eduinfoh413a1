@@ -24,5 +24,7 @@ void IterativeImprovement::run() {
         p1 = p2;
     }
     std::cout << "final solution (score: " << instance_.evaluate(p1) << "): "
-              << p1;
+              << p1 << std::endl;
+              
+    std::cout << "best known score: " << instance_.bestScore() << std::endl;
 }

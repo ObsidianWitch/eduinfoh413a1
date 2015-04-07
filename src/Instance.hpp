@@ -27,12 +27,14 @@ public:
     unsigned size() const;
     Matrix matrix() const;
     long int totalSum() const;
+    long int bestScore();
 
 private:
     std::string filePath_;
     unsigned size_;
     Matrix matrix_;
-    int totalSum_;
+    long int totalSum_;
+    long int bestScore_;
 };
 
 std::ostream& operator<<(std::ostream& ostr, const Matrix& matrix);
