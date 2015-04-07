@@ -56,3 +56,24 @@ includes data as well as optimum solution values."
         .setFilePath(String filePath);
     * Algorithm a = ab.build();
     * a.run();
+
+# Scripts
+
+## generate_experiments
+
+~~~
+instance_name score best_knwon_score deviation computation_time
+N-be75eec_150 2850321 3482828 18.160730303076 1.10763
+N-be75eec_250 7456782 8893533 16.155008363943 7.79982
+N-be75np_150 5991561 7174325 16.486066633446 0.997437
+N-be75np_250 14820463 17814072 16.804742902128 7.66058
+~~~
+
+## compute_averages
+
+~~~
+experiment_name average_deviation computation_time_sum computation_time_average
+ii_cw_best_exchange 17.277346692163 333 4.2692307692308
+ii_cw_best_insertion 17.084249592579 321 4.1153846153846
+ii_cw_best_transpose 17.549047663734 243 3.1153846153846
+~~~
