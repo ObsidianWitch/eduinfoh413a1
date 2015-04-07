@@ -2,11 +2,8 @@
 #include <cstdlib>
 #include <chrono>
 
-#include "rules/Initialization/RandomInitialization.hpp"
-#include "rules/Neighbourhood/Neighbourhood.hpp"
-#include "rules/Pivoting/FirstImprovement.hpp"
-#include "IterativeImprovement.hpp"
 #include "rules/RulesFactory.hpp"
+#include "IterativeImprovement.hpp"
 #include "GlobalArgs.hpp"
 #include "Instance.hpp"
 
