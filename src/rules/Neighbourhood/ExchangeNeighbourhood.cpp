@@ -13,7 +13,7 @@ bool ExchangeNeighbourhood::isValid() {
 }
 
 void ExchangeNeighbourhood::next() {
-    if (p_.second == size_ - 1) {
+    if (p_.second == size_) {
         p_.first++;
         p_.second = p_.first + 1;
     }
