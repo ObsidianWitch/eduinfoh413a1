@@ -1,21 +1,6 @@
 #include "Neighbourhood.hpp"
 
-Neighbourhood::Neighbourhood(unsigned size, unsigned step) :
-    size_(size), step_(step)
-{}
-    
-void Neighbourhood::start() {
-    p_ = std::make_pair(0, step_);
-}
-
-bool Neighbourhood::isValid() {
-    return p_.first + step_ < size_;
-}
-
-void Neighbourhood::next() {
-    p_.first++;
-    p_.second = p_.first + step_;
-}
+Neighbourhood::Neighbourhood(unsigned size) : size_(size) {}
 
 Neighbourhood::operator Point() const {
     return p_;

@@ -8,15 +8,12 @@ typedef std::pair<unsigned, unsigned> Point;
 
 class Neighbourhood {
 public:
-    static const unsigned TRANSPOSE = 1;
-    static const unsigned EXCHANGE  = 2;
-    static const unsigned INSERT = 3;
-
-    Neighbourhood(unsigned size, unsigned step);
+    Neighbourhood(unsigned size);
+    virtual ~Neighbourhood() {}
     
-    void start();
-    bool isValid();
-    void next();
+    virtual void start() = 0;
+    virtual bool isValid() = 0;
+    virtual void next() = 0;
 
     operator Point() const;
     
@@ -26,7 +23,6 @@ public:
 protected:
     Point p_;
     unsigned size_;
-    unsigned step_;
 };
 
 std::ostream& operator<<(std::ostream& ostr, const Point& p);
