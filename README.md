@@ -2,7 +2,8 @@
 
 ## Description
 
-<!-- TODO -->
+Iterative Improvement \& Variable Neighbourhood Descent algorithms were
+implemented for the Linear Ordering Problem.
 
 ## Compilation
 
