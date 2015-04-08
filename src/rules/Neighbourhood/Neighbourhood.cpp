@@ -2,7 +2,7 @@
 
 Neighbourhood::Neighbourhood(unsigned size) : size_(size) {}
 
-Neighbourhood::operator Point() const {
+Neighbourhood::operator Pair() const {
     return p_;
 }
 
@@ -14,7 +14,7 @@ unsigned Neighbourhood::second() {
     return p_.second;
 }
 
-std::ostream& operator<<(std::ostream& ostr, const Point& p) {
+std::ostream& operator<<(std::ostream& ostr, const Pair& p) {
     ostr << "(" << p.first << "," << p.second << ")";
 
     return ostr;

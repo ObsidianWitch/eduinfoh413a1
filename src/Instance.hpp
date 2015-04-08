@@ -7,6 +7,7 @@
 
 typedef std::vector<int> MatrixRow;
 typedef std::vector<MatrixRow> Matrix;
+typedef std::pair<unsigned, unsigned> Pair;
 
 class Instance {
 public:
@@ -14,6 +15,8 @@ public:
     
     void parseToMatrix();
     long int evaluate(const Permutation& p) const;
+    long int evaluate(const Permutation& oldP, const Permutation& newP,
+        long int oldScore, Pair pair) const;
     void permuteRows(const Permutation& p);
     std::string toStringMatrixPermutation(const Permutation& p) const;
     static std::string toStringMatrixPermutation(const Matrix& matrix,

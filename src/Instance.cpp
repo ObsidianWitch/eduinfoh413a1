@@ -39,6 +39,37 @@ long int Instance::evaluate(const Permutation& p) const {
     return score;
 }
 
+long int Instance::evaluate(const Permutation& oldP, const Permutation& newP,
+    long int oldScore, Pair pair) const
+{
+    long int deltaOldScore = 0;
+    long int deltaNewScore = 0;
+    for (unsigned i = 0 ; i < size() ; i++) {
+        for (unsigned j = i + 1 ; j < size() ; j++) {
+            bool iInPair = (i == pair.first) || (i == pair.second);
+            bool jInPair = (j == pair.first) || (j == pair.second);
+
+            bool inCommon = (!iInPair && !jInPair)
+                || (i == pair.first && !jInPair && j > pair.second)
+                || (i == pair.second && !jInPair && j > pair.first)
+                || (j == pair.first && !iInPair && i < pair.second)
+                || (j == pair.second && !iInPair && i < pair.first);
+            
+            if (!inCommon) {
+                // compute score modified zone in old permutation
+                deltaOldScore += matrix_[oldP[i]][oldP[j]];
+                
+                // compute score modified zone in new permutation
+                deltaNewScore += matrix_[newP[i]][newP[j]];
+            }
+        }
+    }
+    
+    long int newScore = oldScore - deltaOldScore + deltaNewScore;
+    
+    return newScore;
+}
+
 void Instance::permuteRows(const Permutation& p) {
     Matrix copyMatrix(matrix_);
     

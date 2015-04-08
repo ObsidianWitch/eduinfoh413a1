@@ -37,6 +37,7 @@ add_executable(lop
     src/rules/Initialization/RandomInitialization.cpp
     src/rules/Initialization/RandomInitialization.hpp
 )
+target_link_libraries(lop profiler)
 
 add_executable(vnd
     src/VariableNeighbourhoodDescent/main_VND.cpp

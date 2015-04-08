@@ -11,7 +11,7 @@ Permutation FirstImprovement::improve(const Permutation& p, Neighbourhood& n) {
     while(n.isValid()) {
         Permutation p2 = n.apply(p);
 
-        long int scoreP2 = instance_.evaluate(p2);
+        long int scoreP2 = instance_.evaluate(p, p2, scoreP, n);
 
         if (scoreP < scoreP2) {
             return p2;

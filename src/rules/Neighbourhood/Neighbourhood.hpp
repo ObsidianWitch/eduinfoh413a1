@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Permutation.hpp"
 
-typedef std::pair<unsigned, unsigned> Point;
+typedef std::pair<unsigned, unsigned> Pair;
 
 class Neighbourhood {
 public:
@@ -17,16 +17,16 @@ public:
     virtual void next() = 0;
     virtual Permutation apply(const Permutation& p1) = 0;
 
-    operator Point() const;
+    operator Pair() const;
     
     unsigned first();
     unsigned second();
 
 protected:
-    Point p_;
+    Pair p_;
     unsigned size_;
 };
 
-std::ostream& operator<<(std::ostream& ostr, const Point& p);
+std::ostream& operator<<(std::ostream& ostr, const Pair& p);
 
 #endif // NEIGHBOURHOOD_HPP
