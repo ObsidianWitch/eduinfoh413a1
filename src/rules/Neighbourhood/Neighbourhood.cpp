@@ -1,6 +1,6 @@
 #include "Neighbourhood.hpp"
 
-Neighbourhood::Neighbourhood(unsigned size) : size_(size) {}
+Neighbourhood::Neighbourhood(unsigned size) : size_(size), covered_(1) {}
 
 Neighbourhood::operator Point() const {
     return p_;

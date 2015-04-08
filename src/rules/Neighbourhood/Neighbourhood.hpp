@@ -25,6 +25,7 @@ public:
 protected:
     Point p_;
     unsigned size_;
+    unsigned covered_;
 };
 
 std::ostream& operator<<(std::ostream& ostr, const Point& p);
