@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <iostream>
+#include "Permutation.hpp"
 
 typedef std::pair<unsigned, unsigned> Point;
 
@@ -14,6 +15,7 @@ public:
     virtual void start() = 0;
     virtual bool isValid() = 0;
     virtual void next() = 0;
+    virtual Permutation apply(Permutation& p1) = 0;
 
     operator Point() const;
     
