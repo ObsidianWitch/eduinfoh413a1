@@ -9,14 +9,12 @@ void TransposeNeighbourhood::start() {
 }
 
 bool TransposeNeighbourhood::isValid() {
-    return (covered_ <= (size_ - 1));
+    return p_.second < size_;
 }
 
 void TransposeNeighbourhood::next() {
     p_.first++;
     p_.second = p_.first + 1;
-    
-    covered_++;
 }
 
 Permutation TransposeNeighbourhood::apply(Permutation& p1) {

@@ -9,19 +9,17 @@ void ExchangeNeighbourhood::start() {
 }
 
 bool ExchangeNeighbourhood::isValid() {
-    return (covered_ <= size * (size_ - 1)/2);
+    return p_.first < size_ - 1;
 }
 
 void ExchangeNeighbourhood::next() {
-    if (p_.second == size_) {
+    if (p_.second == size_ - 1) {
         p_.first++;
         p_.second = p_.first + 1;
     }
     else {
-        p_second++;
+        p_.second++;
     }
-    
-    covered_++;
 }
 
 Permutation ExchangeNeighbourhood::apply(Permutation& p1) {

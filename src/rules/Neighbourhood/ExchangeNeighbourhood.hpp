@@ -4,6 +4,7 @@
 #include "Neighbourhood.hpp"
 
 class ExchangeNeighbourhood : public Neighbourhood {
+public:
     ExchangeNeighbourhood(unsigned size);
     
     void start();

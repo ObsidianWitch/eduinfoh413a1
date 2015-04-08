@@ -5,15 +5,16 @@ InsertNeighbourhood::InsertNeighbourhood(unsigned size) :
 {}
 
 void InsertNeighbourhood::start() {
-    p_ = std::make_pair(0, 1); // TODO
+    p_ = std::make_pair(0, 1);
 }
 
 bool InsertNeighbourhood::isValid() {
-    return (covered_ <= (size_ - 1) * (size_ - 1));
+    return p_.first < size_;
 }
 
 void InsertNeighbourhood::next() {
-    if (p_second == size_) {
+    // progress
+    if (p_.second == size_ - 1) {
         p_.first++;
         p_.second = 0;
     }
@@ -21,18 +22,16 @@ void InsertNeighbourhood::next() {
         p_.second++;
     }
     
-    if (p_.first == p_.second) {
+    // skip duplicates
+    if ((p_.first == p_.second) || (p_.first == p_.second + 1)) {
         next();
-        covered_--;
     }
-    
-    covered_++;
 }
 
 Permutation InsertNeighbourhood::apply(Permutation& p1) {
     Permutation p2 = p1;
-    p2.remove(first())
-    p2.insert(second() + 1, p1[first()]);
+    p2.erase(first());
+    p2.insert(second(), p1[first()]);
     
     return p2;
 }

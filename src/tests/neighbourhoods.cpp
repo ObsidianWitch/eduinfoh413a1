@@ -1,58 +1,54 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
-#include "rules/Neighbourhood/Neighbourhood.hpp"
+#include "rules/Neighbourhood/TransposeNeighbourhood.hpp"
+#include "rules/Neighbourhood/ExchangeNeighbourhood.hpp"
+#include "rules/Neighbourhood/InsertNeighbourhood.hpp"
+#include "Permutation.hpp"
 
-void testPrint() {
-    Neighbourhood n(5, Neighbourhood::TRANSPOSE);
+void testTranspose() {
+    Permutation p(4);
+    TransposeNeighbourhood n(p.size());
 
-    std::cout << "Neighbourhood::TRANSPOSE" << std::endl;
+    std::cout << "TransposeNeighbourhood" << std::endl;
     n.start();
     while (n.isValid()) {
-        std::cout << n << std::endl;
+        Permutation p2 = n.apply(p);
+        std::cout << n << ": " << p2 << std::endl;
         n.next();
     }
     std::cout << std::endl;
 }
 
-void testTranspose() {
-    Neighbourhood n(5, Neighbourhood::TRANSPOSE);
-    n.start();
-    assert(n.first() == 0 && n.second() == 1);
-    n.next();
-    assert(n.first() == 1 && n.second() == 2);
-    n.next();
-    assert(n.first() == 2 && n.second() == 3);
-    n.next();
-    assert(n.first() == 3 && n.second() == 4);
-    n.next();
-    assert(!n.isValid());
-}
-
 void testExchange() {
-    Neighbourhood n(5, Neighbourhood::EXCHANGE);
+    Permutation p(4);
+    ExchangeNeighbourhood n(p.size());
+
+    std::cout << "ExchangeNeighbourhood" << std::endl;
     n.start();
-    assert(n.first() == 0 && n.second() == 2);
-    n.next();
-    assert(n.first() == 1 && n.second() == 3);
-    n.next();
-    assert(n.first() == 2 && n.second() == 4);
-    n.next();
-    assert(!n.isValid());
+    while (n.isValid()) {
+        Permutation p2 = n.apply(p);
+        std::cout << n << ": " << p2 << std::endl;
+        n.next();
+    }
+    std::cout << std::endl;
 }
 
 void testInsert() {
-    Neighbourhood n(5, Neighbourhood::INSERT);
+    Permutation p(4);
+    InsertNeighbourhood n(p.size());
+
+    std::cout << "InsertNeighbourhood" << std::endl;
     n.start();
-    assert(n.first() == 0 && n.second() == 3);
-    n.next();
-    assert(n.first() == 1 && n.second() == 4);
-    n.next();
-    assert(!n.isValid());
+    while (n.isValid()) {
+        Permutation p2 = n.apply(p);
+        std::cout << n << ": " << p2 << std::endl;
+        n.next();
+    }
+    std::cout << std::endl;
 }
 
 int main() {
-    testPrint();
     testTranspose();
     testExchange();
     testInsert();

@@ -1,6 +1,8 @@
 #include "rules/Initialization/CWInitialization.hpp"
 #include "rules/Initialization/RandomInitialization.hpp"
-#include "rules/Neighbourhood/Neighbourhood.hpp"
+#include "rules/Neighbourhood/TransposeNeighbourhood.hpp"
+#include "rules/Neighbourhood/ExchangeNeighbourhood.hpp"
+#include "rules/Neighbourhood/InsertNeighbourhood.hpp"
 #include "rules/Pivoting/BestImprovement.hpp"
 #include "rules/Pivoting/FirstImprovement.hpp"
 #include "RulesFactory.hpp"
@@ -35,13 +37,13 @@ Neighbourhood* RulesFactory::getNeighbourhood(std::string neighbourhood,
     unsigned size)
 {
     if (neighbourhood == "transpose") {
-        return new Neighbourhood(size, Neighbourhood::TRANSPOSE);
+        return new TransposeNeighbourhood(size);
     }
     else if (neighbourhood == "exchange") {
-        return new Neighbourhood(size, Neighbourhood::EXCHANGE);
+        return new ExchangeNeighbourhood(size);
     }
     else if (neighbourhood == "insert") {
-        return new Neighbourhood(size, Neighbourhood::INSERT);
+        return new InsertNeighbourhood(size);
     }
     
     exit(EXIT_FAILURE);
@@ -51,9 +53,9 @@ Neighbourhood** RulesFactory::getVNDNeighbourhood(std::string neighbourhood,
     unsigned size)
 {
     Neighbourhood** n = new Neighbourhood*[3];
-    Neighbourhood* nt = new Neighbourhood(size, Neighbourhood::TRANSPOSE);
-    Neighbourhood* ne = new Neighbourhood(size, Neighbourhood::EXCHANGE);
-    Neighbourhood* ni = new Neighbourhood(size, Neighbourhood::INSERT);
+    Neighbourhood* nt = new TransposeNeighbourhood(size);
+    Neighbourhood* ne = new ExchangeNeighbourhood(size);
+    Neighbourhood* ni = new InsertNeighbourhood(size);
     
     if (neighbourhood == "tei") {
         n[0] = nt; n[1] = ne; n[2] = ni;

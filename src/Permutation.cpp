@@ -18,6 +18,14 @@ void Permutation::permute(unsigned i1, unsigned i2) {
     indices_[i2] = tmp;
 }
 
+void Permutation::erase(unsigned i) {
+    indices_.erase(indices_.begin() + i);
+}
+
+void Permutation::insert(unsigned i, unsigned element) {
+    indices_.insert(indices_.begin() + i, element);
+}
+
 unsigned Permutation::operator[](unsigned i) const {
     return indices_[i];
 }

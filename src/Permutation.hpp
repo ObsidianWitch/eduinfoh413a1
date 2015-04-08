@@ -10,7 +10,9 @@ public:
 
     void fill();
     void permute(unsigned i1, unsigned i2);
-
+    void erase(unsigned i);
+    void insert(unsigned i, unsigned element);
+    
     // Operators
     unsigned operator[](unsigned i) const;
     unsigned& operator[](unsigned i);

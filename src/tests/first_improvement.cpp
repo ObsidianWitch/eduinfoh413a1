@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cassert>
 
-#include "rules/Neighbourhood/Neighbourhood.hpp"
+#include "rules/Neighbourhood/TransposeNeighbourhood.hpp"
 #include "rules/Pivoting/FirstImprovement.hpp"
 #include "Permutation.hpp"
 #include "Instance.hpp"
@@ -14,7 +14,7 @@ int main() {
               << instance << std::endl;
     std::cout << "score: " << instance.evaluate(p) << std::endl << std::endl;
     
-    Neighbourhood n(instance.size(), Neighbourhood::TRANSPOSE);
+    TransposeNeighbourhood n(instance.size());
     
     FirstImprovement fi(instance);
     Permutation improvedP = fi.improve(p, n);

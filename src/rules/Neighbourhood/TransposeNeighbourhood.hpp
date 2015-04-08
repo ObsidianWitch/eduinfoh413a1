@@ -4,6 +4,7 @@
 #include "Neighbourhood.hpp"
 
 class TransposeNeighbourhood : public Neighbourhood {
+public:
     TransposeNeighbourhood(unsigned size);
     
     void start();

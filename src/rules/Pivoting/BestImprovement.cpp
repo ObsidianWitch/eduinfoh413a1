@@ -9,8 +9,7 @@ Permutation BestImprovement::improve(const Permutation& p, Neighbourhood& n) {
     
     n.start();
     while(n.isValid()) {
-        Permutation p2 = p;
-        p2.permute(n.first(), n.second());
+        Permutation p2 = n.apply(p);
 
         long int scoreP1 = instance_.evaluate(p1);
         long int scoreP2 = instance_.evaluate(p2);

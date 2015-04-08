@@ -4,6 +4,7 @@
 #include "Neighbourhood.hpp"
 
 class InsertNeighbourhood : public Neighbourhood {
+public:
     InsertNeighbourhood(unsigned size);
     
     void start();

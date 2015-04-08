@@ -20,6 +20,12 @@ add_executable(lop
     src/rules/RulesFactory.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.hpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.cpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.hpp
+    src/rules/Neighbourhood/InsertNeighbourhood.cpp
+    src/rules/Neighbourhood/InsertNeighbourhood.hpp
     src/rules/Pivoting/Improvement.hpp
     src/rules/Pivoting/FirstImprovement.cpp
     src/rules/Pivoting/FirstImprovement.hpp
@@ -44,6 +50,12 @@ add_executable(vnd
     src/VariableNeighbourhoodDescent/VariableNeighbourhoodDescent.hpp
     src/rules/RulesFactory.cpp
     src/rules/RulesFactory.hpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.hpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.cpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.hpp
+    src/rules/Neighbourhood/InsertNeighbourhood.cpp
+    src/rules/Neighbourhood/InsertNeighbourhood.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
     src/rules/Pivoting/Improvement.hpp
@@ -74,8 +86,16 @@ add_executable(test_permutation
 
 add_executable(test_neighbourhoods
     src/tests/neighbourhoods.cpp
-    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/Permutation.cpp
+    src/Permutation.hpp
     src/rules/Neighbourhood/Neighbourhood.hpp
+    src/rules/Neighbourhood/Neighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.hpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.cpp
+    src/rules/Neighbourhood/ExchangeNeighbourhood.hpp
+    src/rules/Neighbourhood/InsertNeighbourhood.cpp
+    src/rules/Neighbourhood/InsertNeighbourhood.hpp
 )
 
 add_executable(test_random_init
@@ -110,6 +130,8 @@ add_executable(test_first_improvement
     src/Permutation.hpp
     src/Instance.cpp
     src/Instance.hpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
     src/rules/Pivoting/FirstImprovement.cpp
@@ -122,6 +144,8 @@ add_executable(test_best_improvement
     src/Permutation.hpp
     src/Instance.cpp
     src/Instance.hpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.cpp
+    src/rules/Neighbourhood/TransposeNeighbourhood.hpp
     src/rules/Neighbourhood/Neighbourhood.cpp
     src/rules/Neighbourhood/Neighbourhood.hpp
     src/rules/Pivoting/BestImprovement.cpp
