@@ -5,15 +5,14 @@ FirstImprovement::FirstImprovement(const Instance& instance) :
 {}
 
 Permutation FirstImprovement::improve(const Permutation& p, Neighbourhood& n) {
-    
+    long int scoreP = instance_.evaluate(p);
     
     n.start();
     while(n.isValid()) {
         Permutation p2 = n.apply(p);
 
-        long int scoreP = instance_.evaluate(p);
         long int scoreP2 = instance_.evaluate(p2);
-        
+
         if (scoreP < scoreP2) {
             return p2;
         }
