@@ -10,7 +10,7 @@
 > mkdir out
 > cd out
 > cmake ..
-> make lop
+> make lop vnd
 ~~~
 
 ## Run on one instance
