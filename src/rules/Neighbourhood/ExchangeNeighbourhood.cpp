@@ -22,7 +22,7 @@ void ExchangeNeighbourhood::next() {
     }
 }
 
-Permutation ExchangeNeighbourhood::apply(Permutation& p1) {
+Permutation ExchangeNeighbourhood::apply(const Permutation& p1) {
     Permutation p2 = p1;
     p2.permute(first(), second());
     return p2;

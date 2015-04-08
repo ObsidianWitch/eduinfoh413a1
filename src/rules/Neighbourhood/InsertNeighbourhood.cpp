@@ -28,7 +28,7 @@ void InsertNeighbourhood::next() {
     }
 }
 
-Permutation InsertNeighbourhood::apply(Permutation& p1) {
+Permutation InsertNeighbourhood::apply(const Permutation& p1) {
     Permutation p2 = p1;
     p2.erase(first());
     p2.insert(second(), p1[first()]);

@@ -10,7 +10,7 @@ public:
     void start();
     bool isValid();
     void next();
-    Permutation apply(Permutation& p1);
+    Permutation apply(const Permutation& p1);
 };
 
 #endif // INSERT_NEIGHBOURHOOD_HPP
