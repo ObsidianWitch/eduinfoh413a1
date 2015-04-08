@@ -1,2 +1,35 @@
 \section{Compilation \& scripts}
+
+\noindent In order to compile the programs, cmake is necessary and the instructions below
+must be followed.
+
+\begin{lstlisting}[language=bash]
+> mkdir out
+> cd out
+> cmake ..
+> make lop vnd
+\end{lstlisting}
+\
+
+\noindent As for the scripts, they can be run in the following order:
+\begin{lstlisting}[language=bash]
+> cd scripts
+> ./generate_experiments.lua
+> mv ../out/experiments ..
+> ./compute_average.lua
+> ./statistical_hypothesis_tests.R
+\end{lstlisting}
+
+\begin{framehint}
+    \textbf{N.B.} Scripts and algorithms combinations not using the \emph{transpose}
+    neighbourhood should be ran from the \emph{oldNeighbourhoods} branch
+    (\emph{git checkout oldNeighbourhoods}) in order to be executed in feasible
+    times. This branch contains the \emph{transpose} neighbourhood and 2 other
+    neighbourhoods which are not the \emph{exchange} nor the \emph{insert}
+    neighbourhoods even though they are called this way.
+    The reason for this branch existence is related to problems regarding
+    computation time which were encountered. These problems will be described
+    later in this report.
+\end{framehint}
+
 \newpage
