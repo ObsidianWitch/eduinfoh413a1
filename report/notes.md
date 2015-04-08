@@ -11,6 +11,22 @@ optimization?
 * the same seed should be used for one instance -> possible solutions: generate
 seed based on filename or on the instance size
 
+# Neighbourhoods
+
+<http://goo.gl/qIaKpp>
+
+* Transpose Neighbourhood $N_t$: 2 permutations $\phi$, $\phi'$ are transpose
+neighbourhoods iff one can be obtained from the other by swapping the positions
+of 2 adjacent jobs. $|N_t| = n-1$.
+
+* Exchange Neighbourhood $N_e$: 2 permutations $\phi$, $\phi'$ are 2-exchange
+neighbourhood iff one can be obtained from the other by swapping 2 elements
+i and j (i != j) regardless of their adjacency. $|N_e| = n*(n-1)/2$.
+
+* Insert Neighbourhood $N_i$: all permutations that can be obtained by removing
+an element at the ith position and inserting it in the jth position (i != j).
+$|N_i| = (n-1)^2$.
+
 # Algorithm configuration
 
 * 12 combination
