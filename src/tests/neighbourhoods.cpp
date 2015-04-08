@@ -41,8 +41,8 @@ void testExchange() {
     assert(!n.isValid());
 }
 
-void testInsertion() {
-    Neighbourhood n(5, Neighbourhood::INSERTION);
+void testInsert() {
+    Neighbourhood n(5, Neighbourhood::INSERT);
     n.start();
     assert(n.first() == 0 && n.second() == 3);
     n.next();
@@ -55,7 +55,7 @@ int main() {
     testPrint();
     testTranspose();
     testExchange();
-    testInsertion();
+    testInsert();
     
     return EXIT_SUCCESS;
 }

@@ -90,6 +90,6 @@ N-be75np_250 14820463 17814072 16.804742902128 7.66058
 ~~~
 experiment_name average_deviation computation_time_sum computation_time_average
 ii_cw_best_exchange 17.277346692163 333 4.2692307692308
-ii_cw_best_insertion 17.084249592579 321 4.1153846153846
+ii_cw_best_insert 17.084249592579 321 4.1153846153846
 ii_cw_best_transpose 17.549047663734 243 3.1153846153846
 ~~~

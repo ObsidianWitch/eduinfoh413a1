@@ -18,7 +18,7 @@
 ~~~
 Usage:./lop -i <initialization_rule (cw|random)>
 	        -p <pivoting_rule (first|best)>
-	        -n <neighbourhood (transpose|exchange|insertion)>
+	        -n <neighbourhood (transpose|exchange|insert)>
 	        -f <instance_file>
 
 > ./lop -i cw -p first -n transpose -f ../instances/N-be75eec_250

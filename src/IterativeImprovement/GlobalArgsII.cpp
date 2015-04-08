@@ -73,11 +73,11 @@ void GlobalArgsII::checkPivotingRule() const {
 void GlobalArgsII::checkNeighborhood() const {
     bool valid = (neighbourhood == "transpose") ||
                  (neighbourhood == "exchange") ||
-                 (neighbourhood == "insertion");
+                 (neighbourhood == "insert");
     
     if (!valid) {
         std::cout << "<neighbourhood> must be one of the following:"
-                  << " transpose, exhange, insertion" << std::endl;
+                  << " transpose, exhange, insert" << std::endl;
         exit(EXIT_FAILURE);
     }
 }
@@ -95,6 +95,6 @@ void GlobalArgsII::printHelp() const {
     std::cout << "Usage:" << programName
               << " -i <initialization_rule (cw|random)>" << std::endl
               << "\t-p <pivoting_rule (first|best)>" << std::endl
-              << "\t-n <neighbourhood (transpose|exchange|insertion)>" << std::endl
+              << "\t-n <neighbourhood (transpose|exchange|insert)>" << std::endl
               << "\t-f <instance_file>" << std::endl;
 }

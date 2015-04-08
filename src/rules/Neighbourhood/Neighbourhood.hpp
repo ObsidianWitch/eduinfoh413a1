@@ -10,7 +10,7 @@ class Neighbourhood {
 public:
     static const unsigned TRANSPOSE = 1;
     static const unsigned EXCHANGE  = 2;
-    static const unsigned INSERTION = 3;
+    static const unsigned INSERT = 3;
 
     Neighbourhood(unsigned size, unsigned step);
     

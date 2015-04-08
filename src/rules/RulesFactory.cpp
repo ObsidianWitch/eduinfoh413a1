@@ -40,8 +40,8 @@ Neighbourhood* RulesFactory::getNeighbourhood(std::string neighbourhood,
     else if (neighbourhood == "exchange") {
         return new Neighbourhood(size, Neighbourhood::EXCHANGE);
     }
-    else if (neighbourhood == "insertion") {
-        return new Neighbourhood(size, Neighbourhood::INSERTION);
+    else if (neighbourhood == "insert") {
+        return new Neighbourhood(size, Neighbourhood::INSERT);
     }
     
     exit(EXIT_FAILURE);
@@ -53,7 +53,7 @@ Neighbourhood** RulesFactory::getVNDNeighbourhood(std::string neighbourhood,
     Neighbourhood** n = new Neighbourhood*[3];
     Neighbourhood* nt = new Neighbourhood(size, Neighbourhood::TRANSPOSE);
     Neighbourhood* ne = new Neighbourhood(size, Neighbourhood::EXCHANGE);
-    Neighbourhood* ni = new Neighbourhood(size, Neighbourhood::INSERTION);
+    Neighbourhood* ni = new Neighbourhood(size, Neighbourhood::INSERT);
     
     if (neighbourhood == "tei") {
         n[0] = nt; n[1] = ne; n[2] = ni;

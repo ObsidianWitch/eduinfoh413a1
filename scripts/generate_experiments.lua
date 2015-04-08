@@ -2,7 +2,7 @@
 
 ii_initialization_opts = { "cw", "random" }
 ii_pivoting_opts = { "first", "best" }
-ii_neighbourhood_opts = { "transpose", "exchange", "insertion" }
+ii_neighbourhood_opts = { "transpose", "exchange", "insert" }
 vnd_neighbourhood_opts = { "tei", "tie" }
 
 function retrieveInstances()
