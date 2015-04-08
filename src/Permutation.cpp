@@ -1,6 +1,7 @@
 #include "Permutation.hpp"
 
 Permutation::Permutation(unsigned size) {
+    score_ = -1;
     resize(size);
     fill();
 }
@@ -44,13 +45,17 @@ bool Permutation::operator ==(const Permutation& b) const {
     return true;
 }
 
-unsigned Permutation::size() const {
-    return size_;
-}
+unsigned Permutation::size() const { return size_; }
 
 void Permutation::resize(unsigned size) {
     size_ = size;
     indices_.resize(size_);
+}
+
+long int Permutation::score() const { return score_; }
+
+void Permutation::setScore(long int score) {
+    score_ = score;
 }
 
 std::ostream& operator<<(std::ostream& ostr, const Permutation& perm) {

@@ -8,7 +8,6 @@ Instance::Instance(std::string filePath) :
     parseToMatrix();
 }
 
-// TODO handle badly formatted files
 void Instance::parseToMatrix() {
     std::ifstream ifs(filePath_.c_str());
     std::stringstream ss;
@@ -27,7 +26,7 @@ void Instance::parseToMatrix() {
     }
 }
 
-long int Instance::evaluate(const Permutation& p) const {
+long int Instance::evaluate(Permutation& p) const {
     long int score = 0;
     
     for (unsigned i = 0 ; i < size() ; i++) {
@@ -36,14 +35,17 @@ long int Instance::evaluate(const Permutation& p) const {
         }
     }
     
+    p.setScore(score);
+    
     return score;
 }
 
-long int Instance::evaluate(const Permutation& oldP, const Permutation& newP,
-    long int oldScore, Pair pair) const
+long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
+    Pair pair) const
 {
     long int deltaOldScore = 0;
     long int deltaNewScore = 0;
+
     for (unsigned i = 0 ; i < size() ; i++) {
         for (unsigned j = i + 1 ; j < size() ; j++) {
             bool iInPair = (i == pair.first) || (i == pair.second);
@@ -56,16 +58,17 @@ long int Instance::evaluate(const Permutation& oldP, const Permutation& newP,
                 || (j == pair.second && !iInPair && i < pair.first);
             
             if (!inCommon) {
-                // compute score modified zone in old permutation
+                // compute modified zone's score in old permutation
                 deltaOldScore += matrix_[oldP[i]][oldP[j]];
                 
-                // compute score modified zone in new permutation
+                // compute modified zone's score in new permutation
                 deltaNewScore += matrix_[newP[i]][newP[j]];
             }
         }
     }
-    
-    long int newScore = oldScore - deltaOldScore + deltaNewScore;
+        
+    long int newScore = oldP.score() - deltaOldScore + deltaNewScore;
+    newP.setScore(newScore);
     
     return newScore;
 }

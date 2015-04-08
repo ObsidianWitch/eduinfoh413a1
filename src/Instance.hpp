@@ -14,9 +14,9 @@ public:
     Instance(std::string filePath);
     
     void parseToMatrix();
-    long int evaluate(const Permutation& p) const;
-    long int evaluate(const Permutation& oldP, const Permutation& newP,
-        long int oldScore, Pair pair) const;
+    long int evaluate(Permutation& p) const;
+    long int evaluate(const Permutation& oldP, Permutation& newP,
+        Pair pair) const;
     void permuteRows(const Permutation& p);
     std::string toStringMatrixPermutation(const Permutation& p) const;
     static std::string toStringMatrixPermutation(const Matrix& matrix,

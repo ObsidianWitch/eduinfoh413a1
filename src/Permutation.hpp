@@ -21,10 +21,13 @@ public:
     // Accessors
     unsigned size() const;
     void resize(unsigned size);
+    long int score() const;
+    void setScore(long int score);
     
 private:
     std::vector<unsigned> indices_;
     unsigned size_;
+    long int score_;
 };
 
 std::ostream& operator<<(std::ostream& ostr, const Permutation& perm);

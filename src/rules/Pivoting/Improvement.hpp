@@ -9,9 +9,9 @@ class Improvement {
 public:
     Improvement(const Instance& instance) : instance_(instance) {}
     virtual ~Improvement() {}
+
+    virtual Permutation improve(Permutation& p, Neighbourhood& n) = 0;
     
-    virtual Permutation improve(const Permutation& p, Neighbourhood& n) = 0;
-        
 protected:
     const Instance& instance_;
 };

@@ -20,11 +20,13 @@ void IterativeImprovement::run() {
     
     while (!localOptimum) {
         Permutation p2 = improvement_.improve(p1, neighbourhood_);
+        std::cout << "p1.score:" << p1.score() << "\t" << "p2.score:"
+            << p2.score()  << std::endl;
         
         localOptimum = (p1 == p2);
         p1 = p2;
     }
-    std::cout << "final solution (score: " << instance_.evaluate(p1) << "): "
+    std::cout << "final solution (score: " << p1.score() << "): "
               << p1 << std::endl;
               
     std::cout << "best known score: " << instance_.bestScore() << std::endl;
