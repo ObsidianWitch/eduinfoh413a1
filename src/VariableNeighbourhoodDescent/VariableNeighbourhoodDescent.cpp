@@ -26,8 +26,9 @@ void VariableNeighbourhoodDescent::run() {
             i++;
         }
         else {
+            std::cout << "[" << i << "]" << p1.score() << " " << p2.score() << std::endl;
             p1 = p2;
-            i = 1;
+            i = 0;
         }
     }
 
