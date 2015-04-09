@@ -1,7 +1,84 @@
 \section{Exercise 1.1}
 
 \subsection{Implementation}
-% TODO
+The program's architecture will be discussed in this section. The main entry
+point for the first exercise's program is the \emph{IterativeImprovement/main\_ii.cpp}
+file.\\
+
+Command line arguments are parsed using an instance of the \emph{GlobalArgsII}
+struct which checks that all arguments are correctly filled. The arguments are
+stored in this struct attributes. The arguments which must be specified are
+the 3 types of rules (initialisation, pivoting rule and neighbourhood) and the
+instance file.\\
+
+\begin{lstlisting}
+> ./lop
+Usage:./lop -i <initialization_rule (cw|random)>
+	-p <pivoting_rule (first|best)>
+	-n <neighbourhood (transpose|exchange|insert)>
+	-f <instance_file>
+
+> ./lop -i cw -p first -n exchange -f ../instances/N-be75eec_150
+...
+\end{lstlisting}
+\
+
+The arguments are then given to the \emph{RulesFactory} in order to get the
+desired instances of an initialization, a neighbourhood and a pivoting rule.
+Each rule inherits respectively from the \emph{Initialization},
+\emph{Neighbourhood} and \emph{Improvement} abstract classes. By doing so, we
+can easily extend the program (adding rules).\\
+
+The body of the algorithm which uses the 3 rules previously defined is described
+in the \emph{IterativeImprovement} class.\\
+
+\begin{lstlisting}
+void IterativeImprovement::run() {
+    Permutation p(instance_.size());
+
+    bool localOptimum = false;
+    instance_.evaluate(p1);
+    
+    while (!localOptimum) {
+        Permutation p2 = improvement_.improve(p1, neighbourhood_);
+        
+        localOptimum = (p1 == p2);
+        p1 = p2;
+    }
+}
+\end{lstlisting}
+\
+
+The two main classs used in this program are the \emph{Instance} and
+\emph{Permutation} classes. The first one loads a matrix from an instance file
+and stores it in a 2D vector. The second one contains an array representing the
+permutation concept described in the subject's slides.\\
+
+The \textbf{Instance::evaluate()} method is used to compute an instance's score
+with the help of a permutation. The following formula corresponds to the sum
+computed by this methods:\\
+$\sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} m(\pi[i], \pi[j])$, with $\pi$ a permutation.\\
+
+We do not need to recompute the sum from each cells between two permutations,
+there are cells which can be reused: $newScore = oldScore - deltaOldScore + deltaNewScore$ with \emph{deltaOldScores} the cells in the old permutation which were modified
+in the new permutation and \emph{deltaNewScores} the cells in the new permutation
+which were modified in the new permutation. We define the following boolean
+variables in order to determine which cells are in common :\\
+
+\begin{lstlisting}
+bool iInPair = (i == pair.first) || (i == pair.second);
+bool jInPair = (j == pair.first) || (j == pair.second);
+
+bool inCommon = (!iInPair && !jInPair)
+    || (i == pair.first && !jInPair && j > pair.second)
+    || (i == pair.second && !jInPair && j > pair.first)
+    || (j == pair.first && !iInPair && i < pair.second)
+    || (j == pair.second && !iInPair && i < pair.first);
+\end{lstlisting}
+
+The \emph{inCommon} variable can then be inverted in order to retrieve the
+modified cells.
+
 \newpage
 
 \subsection{Results}
