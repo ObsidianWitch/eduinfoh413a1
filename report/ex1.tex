@@ -56,7 +56,7 @@ permutation concept described in the subject's slides.\\
 
 The \textbf{Instance::evaluate()} method is used to compute an instance's score
 with the help of a permutation. The following formula corresponds to the sum
-computed by this methods:\\
+computed by this method:\\
 $\sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} m(\pi[i], \pi[j])$, with $\pi$ a permutation.\\
 
 We do not need to recompute the sum from each cells between two permutations,
@@ -75,14 +75,65 @@ bool inCommon = (!iInPair && !jInPair)
     || (j == pair.first && !iInPair && i < pair.second)
     || (j == pair.second && !iInPair && i < pair.first);
 \end{lstlisting}
+\
 
-The \emph{inCommon} variable can then be inverted in order to retrieve the
+\noindent The \emph{inCommon} variable can then be inverted in order to retrieve the
 modified cells.
 
 \newpage
 
 \subsection{Results}
-% TODO
+
+As described previously, problems were encountered regarding the computation time
+of algorithms with the exchange and insert neighbourhoods. These neighbourhoods
+are large and as such take a long time to compute. It would not be feasible to
+execute all the rules combination with all the instances, when the exchange
+neighbourhood with first improvement and a 150*150 instance takes more than
+100 seconds.\\
+
+Optimisations regarding the sum in the evaluation of the score were made
+(ignoring the cells which were not modified in the sum), but it was not
+sufficient to reduce the computation time. Though, it did improve the
+computation time: from 300 seconds to 100 seconds for the case described in the
+previous paragraph.\\
+
+One method to reduce the computation time would have been to proceed to
+neighbourhood pruning in order to remove some neighbours which would not have
+improved score.\\
+
+Although the results do not really have any significance, the scripts were run
+on simplified neighbourhoods in order to prove that they work as intended. To
+reproduce the generation of these results, the \emph{oldNeighbourhoods} branch
+can be switched to in \emph{git}.\\
+
+The \emph{script/generate\_experiments.lua} script generates all experiments from
+all the rule combinations and instances in a separate file for each rule
+combination. The file format and an example can be seen below.\\
+
+\begin{lstlisting}
+instance_name score best_known_score relative_percentage_deviation computation_time
+
+N-be75eec_150 2850321 3482828 18.160730303076 1.10763
+N-be75eec_250 7456782 8893533 16.155008363943 7.79982
+N-be75np_150 5991561 7174325 16.486066633446 0.997437
+N-be75np_250 14820463 17814072 16.804742902128 7.66058
+...
+\end{lstlisting}
+
+The \emph{script/compute\_averages.lua} script takes all the data from the
+previously generated experiments files and computes averages from it.\\
+
+\begin{lstlisting}
+experiment_name average_delta time_sum time_average
+
+ii_cw_best_exchange 17.277346692163 333 4.2692307692308
+ii_cw_best_insert 17.084249592579 321 4.1153846153846
+ii_cw_best_transpose 17.549047663734 243 3.1153846153846
+...
+\end{lstlisting}
+
+
+
 \newpage
 
 \subsection{Tests}
