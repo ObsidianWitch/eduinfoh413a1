@@ -1,5 +1,60 @@
 \section{Exercise 1.2}
 
 \subsection{Implementation}
-% TODO
+The second exercise reuses most of what has been develosped for the first one.
+The difference lies in the use of multiple neighbourhoods. When a local optima
+is met, a larger neighbourhood is used. The program stops when a local optima is
+met with the last neighbourhood available.\\
+
+To do so, a \textbf{RulesFactory::getVNDNeighbourhood()} method was added. It
+returns an array of 3 pointers to a Neigbourhood. The 3 Neighbourhoods are used
+in the 2 following orders: transpose-exchange-insert or transpose-insert-exchange,
+with transpose having a size of $(n-1)$ elements, exchange a size of
+$n * \frac{n-1}{2}$ elements, and insert a size of $(n-1)^2$ elements.\\
+
+\begin{lstlisting}
+Neighbourhood** RulesFactory::getVNDNeighbourhood(std::string neighbourhood,
+    unsigned size)
+{
+    Neighbourhood** n = new Neighbourhood*[3];
+    Neighbourhood* nt = new TransposeNeighbourhood(size);
+    Neighbourhood* ne = new ExchangeNeighbourhood(size);
+    Neighbourhood* ni = new InsertNeighbourhood(size);
+    
+    if (neighbourhood == "tei") {
+        n[0] = nt; n[1] = ne; n[2] = ni;
+        return n;
+    }
+    else if (neighbourhood == "tie") {
+        n[0] = nt; n[1] = ni; n[2] = ne;
+        return n;
+    }
+    
+    exit(EXIT_FAILURE);
+}
+\end{lstlisting}
+\
+
+The main body of the algorithm is contained in the
+\emph{VariableNeighbourhoodDescent} class which can be seen below.\\
+
+\begin{lstlisting}
+void VariableNeighbourhoodDescent::run() {
+    Permutation p1 = initialization_.generateInitialization();
+    
+    int i = 0;
+    while (i < 3) {
+        Permutation p2 = improvement_.improve(p1, *neighbourhoods_[i]);
+        
+        if (p1 == p2) {
+            i++;
+        }
+        else {
+            p1 = p2;
+            i = 1;
+        }
+    }
+}
+\end{lstlisting}
+
 \newpage
