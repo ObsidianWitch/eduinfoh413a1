@@ -6,8 +6,7 @@ BestImprovement::BestImprovement(const Instance& instance) :
 
 Permutation BestImprovement::improve(Permutation& p, Neighbourhood& n) {
     if (p.score() == -1) {
-        long int scoreP = instance_.evaluate(p);
-        p.setScore(scoreP);
+        instance_.evaluate(p);
     }
     
     Permutation p1 = p;

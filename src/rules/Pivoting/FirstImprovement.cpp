@@ -6,8 +6,7 @@ FirstImprovement::FirstImprovement(const Instance& instance) :
 
 Permutation FirstImprovement::improve(Permutation& p, Neighbourhood& n) {
     if (p.score() == -1) {
-        long int scoreP = instance_.evaluate(p);
-        p.setScore(scoreP);
+        instance_.evaluate(p);
     }
     
     n.start();
