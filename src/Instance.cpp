@@ -62,8 +62,6 @@ long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
     newP.setScore(newScore);
     
     return newScore;
-    
-    // FIXME return evaluate(newP);
 }
 
 void Instance::permuteRows(const Permutation& p) {
