@@ -37,5 +37,10 @@ Permutation InsertNeighbourhood::apply(const Permutation& p1) {
 }
 
 bool InsertNeighbourhood::inCommon(unsigned i, unsigned j) const {
-    return false;
+    bool inCommon = (i < first())
+        || (i > second())
+        || (j < first())
+        || (j > second());
+    
+    return inCommon;
 }
