@@ -41,25 +41,14 @@ long int Instance::evaluate(Permutation& p) const {
 }
 
 long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
-    Pair pair) const
+    const Neighbourhood& n) const
 {
-    /*long int deltaOldScore = 0;
+    long int deltaOldScore = 0;
     long int deltaNewScore = 0;
 
     for (unsigned i = 0 ; i < size() ; i++) {
         for (unsigned j = i + 1 ; j < size() ; j++) {
-            bool iInPair = (i == pair.first) || (i == pair.second);
-            bool jInPair = (j == pair.first) || (j == pair.second);
-            
-            bool modifiedZoneApprox = (iInPair || jInPair);
-
-            bool inCommon = (!iInPair && !jInPair)
-                || (i == pair.first && !jInPair && j > pair.second)
-                || (i == pair.second && !jInPair && j > pair.first)
-                || (j == pair.first && !iInPair && i < pair.second)
-                || (j == pair.second && !iInPair && i < pair.first);
-            
-            if (modifiedZoneApprox) {
+            if (!n.inCommon(i,j)) {
                 // compute modified zone's score in old permutation
                 deltaOldScore += matrix_[oldP[i]][oldP[j]];
                 
@@ -72,9 +61,9 @@ long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
     long int newScore = oldP.score() - deltaOldScore + deltaNewScore;
     newP.setScore(newScore);
     
-    return newScore;*/
+    return newScore;
     
-    return evaluate(newP);
+    // FIXME return evaluate(newP);
 }
 
 void Instance::permuteRows(const Permutation& p) {

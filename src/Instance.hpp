@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "Permutation.hpp"
+#include "rules/Neighbourhood/Neighbourhood.hpp"
 
 typedef std::vector<int> MatrixRow;
 typedef std::vector<MatrixRow> Matrix;
@@ -16,7 +17,7 @@ public:
     void parseToMatrix();
     long int evaluate(Permutation& p) const;
     long int evaluate(const Permutation& oldP, Permutation& newP,
-        Pair pair) const;
+        const Neighbourhood& n) const;
     void permuteRows(const Permutation& p);
     std::string toStringMatrixPermutation(const Permutation& p) const;
     static std::string toStringMatrixPermutation(const Matrix& matrix,

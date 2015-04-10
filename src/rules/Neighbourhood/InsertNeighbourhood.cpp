@@ -35,3 +35,7 @@ Permutation InsertNeighbourhood::apply(const Permutation& p1) {
     
     return p2;
 }
+
+bool InsertNeighbourhood::inCommon(unsigned i, unsigned j) const {
+    return false;
+}

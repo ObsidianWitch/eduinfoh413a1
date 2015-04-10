@@ -16,11 +16,17 @@ public:
     virtual bool isValid() = 0;
     virtual void next() = 0;
     virtual Permutation apply(const Permutation& p1) = 0;
-
+    
+    /**
+     * Returns whether the specified point is unchanged after application of
+     * this neighbour's current operation (apply()).
+     */
+    virtual bool inCommon(unsigned i, unsigned j) const = 0;
+    
     operator Pair() const;
     
-    unsigned first();
-    unsigned second();
+    unsigned first() const;
+    unsigned second() const;
 
 protected:
     Pair p_;
