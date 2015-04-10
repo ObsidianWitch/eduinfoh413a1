@@ -60,12 +60,13 @@ computed by this method:\\
 $\sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} m(\pi[i], \pi[j])$, with $\pi$ a permutation.\\
 
 We do not need to recompute the sum from each cells between two permutations,
-there are cells which can be reused: $newScore = oldScore - deltaOldScore + deltaNewScore$ with \emph{deltaOldScores} the cells in the old permutation which were modified
+there are cells which can be reused: $newScore = oldScore - deltaOldScore + deltaNewScore$
+with \emph{deltaOldScores} the cells in the old permutation which were modified
 in the new permutation and \emph{deltaNewScores} the cells in the new permutation
 which were modified in the new permutation. We define the following boolean
-variables in order to determine which cells are in common :\\
+variables in order to determine which cells are in common :\\\\
 
-\begin{lstlisting}
+\begin{lstlisting}[caption="Cells in common for transpose \& exchange neighbourhoods"]
 bool iInPair = (i == pair.first) || (i == pair.second);
 bool jInPair = (j == pair.first) || (j == pair.second);
 
@@ -77,8 +78,27 @@ bool inCommon = (!iInPair && !jInPair)
 \end{lstlisting}
 \
 
+\begin{lstlisting}[caption="Cells in common for insert neighbourhoods"]
+    bool inCommon = (i < first())
+        || (i > second())
+        || (j < first())
+        || (j > second());
+\end{lstlisting}
+\
+
 \noindent The \emph{inCommon} variable can then be inverted in order to retrieve the
-modified cells.
+modified cells.\\
+
+\begin{frameurgent}
+	In order to know which optimisation to use, I have used an OOP mechanism
+	(inclusion polymorphism, \emph{Neighbourhood::inCommon()}) but it slows
+	down the program more than if no OOP mechanism was used. The computation
+	time is strongly affected by this because the \emph{evaluate()} method is
+	the most called method in the program.\\
+	
+	\noindent In retrospect, it would probably have been more efficient to not use any
+	abstraction at all in the program.
+\end{frameurgent}
 
 \newpage
 
