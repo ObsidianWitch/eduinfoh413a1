@@ -1,13 +1,13 @@
 \section{Exercise 1.2}
 
 \subsection{Implementation}
-The second exercise reuses most of what has been develosped for the first one.
+The second exercise reuses most of what has been developed for the first one.
 The difference lies in the use of multiple neighbourhoods. When a local optima
 is met, a larger neighbourhood is used. The program stops when a local optima is
 met with the last neighbourhood available.\\
 
 To do so, a \textbf{RulesFactory::getVNDNeighbourhood()} method was added. It
-returns an array of 3 pointers to a Neigbourhood. The 3 Neighbourhoods are used
+returns an array of 3 pointers to a Neighbourhood. The 3 Neighbourhoods are used
 in the 2 following orders: transpose-exchange-insert or transpose-insert-exchange,
 with transpose having a size of $(n-1)$ elements, exchange a size of
 $n * \frac{n-1}{2}$ elements, and insert a size of $(n-1)^2$ elements.\\

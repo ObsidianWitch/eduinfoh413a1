@@ -96,8 +96,9 @@ modified cells.\\
 	time is strongly affected by this because the \emph{evaluate()} method is
 	the most called method in the program.\\
 	
-	\noindent In retrospect, it would probably have been more efficient to not use any
-	abstraction at all in the program.
+	\noindent In retrospect, it would probably have been more efficient to not
+	use any abstraction at all in the program, or use CPP templates (since
+	templates are expanded at compile time and not during execution).
 \end{frameurgent}
 
 \newpage
@@ -175,7 +176,7 @@ An R script (\emph{scripts/statistical\_hypothesis\_tests.R}) was written in ord
 to apply these tests to all possible pairs of experiments. The output was saved
 in the \emph{experiments/stats\_tests} directory (reminder: these
 results do not have much significance, because the experiments were run on
-the transpose neigbourhoods + 2 other neighbourhoods which were intended by the
+the transpose neighbourhoods + 2 other neighbourhoods which were intended by the
 assignment subject).\\
 
 \begin{lstlisting}[language=R]
