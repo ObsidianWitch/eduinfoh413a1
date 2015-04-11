@@ -30,8 +30,8 @@ void InsertNeighbourhood::next() {
 
 Permutation InsertNeighbourhood::apply(const Permutation& p1) {
     Permutation p2 = p1;
-    p2.erase(first());
-    p2.insert(second(), p1[first()]);
+    p2.erase(p_.first);
+    p2.insert(p_.second, p1[p_.first]);
     
     return p2;
 }
