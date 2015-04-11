@@ -14,8 +14,8 @@ Permutation BestImprovement::improve(Permutation& p, Neighbourhood& n) {
     n.start();
     while(n.isValid()) {
         Permutation p2 = n.apply(p);
-
-        instance_.evaluate(p1, p2, n);
+        
+        instance_.evaluate(p, p2, n);
         
         if (p1.score() < p2.score()) {
             p1 = p2;
