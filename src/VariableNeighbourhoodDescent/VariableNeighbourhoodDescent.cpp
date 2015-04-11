@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "VariableNeighbourhoodDescent.hpp"
 
 VariableNeighbourhoodDescent::VariableNeighbourhoodDescent(Instance& instance,
@@ -26,14 +27,17 @@ void VariableNeighbourhoodDescent::run() {
             i++;
         }
         else {
-            std::cout << "[" << i << "]" << p1.score() << " " << p2.score() << std::endl;
+            std::cout << "[" << i << "]" << p1.score() << " "
+                      << p2.score() << std::endl;
             p1 = p2;
             i = 0;
         }
     }
-
-    std::cout << "final solution (score: " << instance_.evaluate(p1) << "): "
-              << p1 << std::endl;
-              
-    std::cout << "best known score: " << instance_.bestScore() << std::endl;
+    
+    long int finalScore = p1.score();
+    long int correctScore = instance_.evaluate(p1);
+    std::cout << "final solution (score: " << finalScore << "): "
+              << p1 << std::endl
+              << "best known score: " << instance_.bestScore() << std::endl;
+    assert(finalScore == correctScore);
 }
