@@ -49,7 +49,7 @@ long int InsertNeighbourhood::delta(const Matrix& matrix,
         }
     }
     else if (first > second) {
-        for (unsigned k = first + 1 ; k <= second ; k++) {
+        for (unsigned k = second ; k <= first - 1 ; k++) {
             delta += matrix[oldP[first]][oldP[k]] - matrix[oldP[k]][oldP[first]];
         }
     }
