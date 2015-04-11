@@ -37,29 +37,22 @@ Permutation InsertNeighbourhood::apply(const Permutation& p1) {
 }
 
 long int InsertNeighbourhood::delta(const Matrix& matrix,
-    const Permutation& oldP, const Permutation& newP) const
+    const Permutation& oldP, const Permutation&) const
 {
-    long int deltaOldScore = 0;
-    long int deltaNewScore = 0;
     long int first = p_.first;
     long int second = p_.second;
     
-    for (unsigned i = 0 ; i < size_ ; i++) {
-        for (unsigned j = i + 1 ; j < size_ ; j++) {
-            bool inCommon = (i < first)
-                || (i > second)
-                || (j < first)
-                || (j > second);
-
-            if (!inCommon) {
-                // compute modified zone's score in old permutation
-                deltaOldScore += matrix[oldP[i]][oldP[j]];
-                
-                // compute modified zone's score in new permutation
-                deltaNewScore += matrix[newP[i]][newP[j]];
-            }
+    long int delta = 0;
+    if (first < second) {
+        for (unsigned k = first + 1 ; k <= second ; k++) {
+            delta += matrix[oldP[k]][oldP[first]] - matrix[oldP[first]][oldP[k]];
+        }
+    }
+    else if (first > second) {
+        for (unsigned k = first + 1 ; k <= second ; k++) {
+            delta += matrix[oldP[first]][oldP[k]] - matrix[oldP[k]][oldP[first]];
         }
     }
     
-    return deltaNewScore - deltaOldScore;
+    return delta;
 }
