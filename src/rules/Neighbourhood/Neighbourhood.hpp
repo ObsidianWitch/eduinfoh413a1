@@ -18,8 +18,7 @@ public:
     virtual bool isValid() = 0;
     virtual void next() = 0;
     virtual Permutation apply(const Permutation& p1) = 0;
-    virtual long int delta(const Matrix& matrix, const Permutation& oldP,
-        const Permutation& newP) const = 0;
+    virtual long int delta(const Matrix& matrix, const Permutation& oldP) const = 0;
     
     operator Pair() const;
     

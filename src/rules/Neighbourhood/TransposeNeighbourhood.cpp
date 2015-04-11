@@ -24,7 +24,7 @@ Permutation TransposeNeighbourhood::apply(const Permutation& p1) {
 }
 
 long int TransposeNeighbourhood::delta(const Matrix& matrix,
-    const Permutation& oldP, const Permutation&) const
+    const Permutation& oldP) const
 {
     unsigned oldPfirst = oldP[p_.first];
     unsigned oldPsecond = oldP[p_.second];

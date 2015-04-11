@@ -29,7 +29,7 @@ Permutation ExchangeNeighbourhood::apply(const Permutation& p1) {
 }
 
 long int ExchangeNeighbourhood::delta(const Matrix& matrix,
-    const Permutation& oldP, const Permutation& newP) const
+    const Permutation& oldP) const
 {
     unsigned first = p_.first;
     unsigned second = p_.second;

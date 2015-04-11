@@ -40,15 +40,12 @@ long int Instance::evaluate(Permutation& p) const {
     return score;
 }
 
-long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
-    const Neighbourhood& n) const
-{
-    long int delta = n.delta(matrix_, oldP, newP);
+long int Instance::evaluate(Permutation& p, const Neighbourhood& n) const {
+    long int delta = n.delta(matrix_, p);
         
-    long int newScore = oldP.score() + delta;
-    newP.setScore(newScore);
+    long int score = p.score() + delta;
     
-    return newScore;
+    return score;
 }
 
 

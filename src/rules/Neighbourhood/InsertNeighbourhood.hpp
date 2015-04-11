@@ -11,8 +11,7 @@ public:
     bool isValid();
     void next();
     Permutation apply(const Permutation& p1);
-    long int delta(const Matrix& matrix, const Permutation& oldP,
-        const Permutation& newP) const;
+    long int delta(const Matrix& matrix, const Permutation& oldP) const;
 };
 
 #endif // INSERT_NEIGHBOURHOOD_HPP

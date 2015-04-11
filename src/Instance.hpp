@@ -16,8 +16,7 @@ public:
     
     void parseToMatrix();
     long int evaluate(Permutation& p) const;
-    long int evaluate(const Permutation& oldP, Permutation& newP,
-        const Neighbourhood& n) const;
+    long int evaluate(Permutation& oldP, const Neighbourhood& n) const;
     void permuteRows(const Permutation& p);
     std::string toStringMatrixPermutation(const Permutation& p) const;
     static std::string toStringMatrixPermutation(const Matrix& matrix,

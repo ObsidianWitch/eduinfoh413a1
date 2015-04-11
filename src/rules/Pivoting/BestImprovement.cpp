@@ -13,11 +13,13 @@ Permutation BestImprovement::improve(Permutation& p, Neighbourhood& n) {
     
     n.start();
     while(n.isValid()) {
-        Permutation p2 = n.apply(p);
         
-        instance_.evaluate(p, p2, n);
+        long int scoreP2 = instance_.evaluate(p, n);
         
-        if (p1.score() < p2.score()) {
+        if (p1.score() < scoreP2) {
+            Permutation p2 = n.apply(p);
+            p2.setScore(scoreP2);
+            
             p1 = p2;
         }
         
