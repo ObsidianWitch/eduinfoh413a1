@@ -31,43 +31,16 @@ Permutation ExchangeNeighbourhood::apply(const Permutation& p1) {
 long int ExchangeNeighbourhood::delta(const Matrix& matrix,
     const Permutation& oldP, const Permutation& newP) const
 {
-    long int deltaOldScore = 0;
-    long int deltaNewScore = 0;
     unsigned first = p_.first;
     unsigned second = p_.second;
-    
-    for (unsigned k = 0 ; k < size_ ; k++) {
-        unsigned oldPk = oldP[k],
-                 newPk = newP[k];
-        unsigned oldPfirst = oldP[first],
-                 newPfirst = newP[first];
-        unsigned oldPsecond = oldP[second],
-                 newPsecond = newP[second];
-        
-        if (first > k) {
-            deltaOldScore += matrix[oldPk][oldPfirst];
-            deltaNewScore += matrix[newPk][newPfirst];
-        }
-        
-        if (second > k) {
-            deltaOldScore += matrix[oldPk][oldPsecond];
-            deltaNewScore += matrix[newPk][newPsecond];
-        }
-        
-        if (first < k) {
-            if (k != first && k != second) {
-                deltaOldScore += matrix[oldPfirst][oldPk];
-                deltaNewScore += matrix[newPfirst][newPk];
-            }
-        }
-        
-        if (second < k) {
-            if (k != first && k != second) {
-                deltaOldScore += matrix[oldPsecond][oldPk];
-                deltaNewScore += matrix[newPsecond][newPk];
-            }
-        }
+    unsigned oldPfirst = oldP[first];
+    unsigned oldPsecond = oldP[second];
+
+    long int delta = matrix[oldPsecond][oldPfirst] - matrix[oldPfirst][oldPsecond];
+    for (unsigned k = first + 1 ; k < second ; k++) {
+        delta += matrix[oldPsecond][oldP[k]] - matrix[oldPfirst][oldP[k]];
+        delta += matrix[oldP[k]][oldPfirst] - matrix[oldP[k]][oldPsecond];
     }
-    
-    return deltaNewScore - deltaOldScore;
+
+    return delta;
 }
