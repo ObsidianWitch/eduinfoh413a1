@@ -20,7 +20,6 @@ public:
 
     // Accessors
     unsigned size() const;
-    void resize(unsigned size);
     long int score() const;
     void setScore(long int score);
     

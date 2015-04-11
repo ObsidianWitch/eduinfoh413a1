@@ -1,8 +1,10 @@
 #include "Permutation.hpp"
 
-Permutation::Permutation(unsigned size) {
+Permutation::Permutation(unsigned size) :
+    indices_(size)
+{
     score_ = -1;
-    resize(size);
+    size_ = size;
     fill();
 }
 
@@ -40,11 +42,6 @@ bool Permutation::operator ==(const Permutation& b) const {
 }
 
 unsigned Permutation::size() const { return size_; }
-
-void Permutation::resize(unsigned size) {
-    size_ = size;
-    indices_.resize(size_);
-}
 
 long int Permutation::score() const { return score_; }
 
