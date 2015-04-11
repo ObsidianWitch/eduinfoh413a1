@@ -39,8 +39,8 @@ Permutation InsertNeighbourhood::apply(const Permutation& p1) {
 long int InsertNeighbourhood::delta(const Matrix& matrix,
     const Permutation& oldP, const Permutation&) const
 {
-    long int first = p_.first;
-    long int second = p_.second;
+    unsigned first = p_.first;
+    unsigned second = p_.second;
     
     long int delta = 0;
     if (first < second) {

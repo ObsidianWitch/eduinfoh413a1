@@ -33,8 +33,8 @@ long int ExchangeNeighbourhood::delta(const Matrix& matrix,
 {
     long int deltaOldScore = 0;
     long int deltaNewScore = 0;
-    long int first = p_.first;
-    long int second = p_.second;
+    unsigned first = p_.first;
+    unsigned second = p_.second;
     
     for (unsigned k = 0 ; k < size_ ; k++) {
         unsigned oldPk = oldP[k],
