@@ -26,14 +26,10 @@ Permutation TransposeNeighbourhood::apply(const Permutation& p1) {
 long int TransposeNeighbourhood::delta(const Matrix& matrix,
     const Permutation& oldP, const Permutation&) const
 {
-    unsigned first = p_.first;
-    unsigned second = p_.second;
-    unsigned oldPfirst = oldP[first];
-    
-    long int delta = 0;
-    for (unsigned k = first + 1 ; k <= second ; k++) {
-        delta += matrix[oldP[k]][oldPfirst] - matrix[oldPfirst][oldP[k]];
-    }
-    
+    unsigned oldPfirst = oldP[p_.first];
+    unsigned oldPsecond = oldP[p_.second];
+
+    long int delta = matrix[oldPsecond][oldPfirst] - matrix[oldPfirst][oldPsecond];
+
     return delta;
 }
