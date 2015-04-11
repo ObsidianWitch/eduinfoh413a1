@@ -29,27 +29,34 @@ long int Neighbourhood::delta(const Matrix& matrix, const Permutation& oldP,
     long int second = p_.second;
 
     for (unsigned k = 0 ; k < size_ ; k++) {
+        unsigned oldPk = oldP[k],
+                 newPk = newP[k];
+        unsigned oldPfirst = oldP[first],
+                 newPfirst = newP[first];
+        unsigned oldPsecond = oldP[second],
+                 newPsecond = newP[second];
+        
         if (first > k) {
-            deltaOldScore += matrix[oldP[k]][oldP[first]];
-            deltaNewScore += matrix[newP[k]][newP[first]];
+            deltaOldScore += matrix[oldPk][oldPfirst];
+            deltaNewScore += matrix[newPk][newPfirst];
         }
         
         if (second > k) {
-            deltaOldScore += matrix[oldP[k]][oldP[second]];
-            deltaNewScore += matrix[newP[k]][newP[second]];
+            deltaOldScore += matrix[oldPk][oldPsecond];
+            deltaNewScore += matrix[newPk][newPsecond];
         }
         
         if (first < k) {
             if (k != first && k != second) {
-                deltaOldScore += matrix[oldP[first]][oldP[k]];
-                deltaNewScore += matrix[newP[first]][newP[k]];
+                deltaOldScore += matrix[oldPfirst][oldPk];
+                deltaNewScore += matrix[newPfirst][newPk];
             }
         }
         
         if (second < k) {
             if (k != first && k != second) {
-                deltaOldScore += matrix[oldP[second]][oldP[k]];
-                deltaNewScore += matrix[newP[second]][newP[k]];
+                deltaOldScore += matrix[oldPsecond][oldPk];
+                deltaNewScore += matrix[newPsecond][newPk];
             }
         }
     }
