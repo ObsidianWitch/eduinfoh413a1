@@ -6,6 +6,8 @@
 #include "Permutation.hpp"
 
 typedef std::pair<unsigned, unsigned> Pair;
+typedef std::vector<int> MatrixRow;
+typedef std::vector<MatrixRow> Matrix;
 
 class Neighbourhood {
 public:
@@ -17,11 +19,8 @@ public:
     virtual void next() = 0;
     virtual Permutation apply(const Permutation& p1) = 0;
     
-    /**
-     * Returns whether the specified point is unchanged after application of
-     * this neighbour's current operation (apply()).
-     */
-    virtual bool inCommon(unsigned i, unsigned j) const = 0;
+    virtual long int delta(const Matrix& matrix, const Permutation& oldP,
+        const Permutation& newP) const;
     
     operator Pair() const;
     

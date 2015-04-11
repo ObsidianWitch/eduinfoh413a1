@@ -43,26 +43,14 @@ long int Instance::evaluate(Permutation& p) const {
 long int Instance::evaluate(const Permutation& oldP, Permutation& newP,
     const Neighbourhood& n) const
 {
-    long int deltaOldScore = 0;
-    long int deltaNewScore = 0;
-
-    for (unsigned i = 0 ; i < size() ; i++) {
-        for (unsigned j = i + 1 ; j < size() ; j++) {
-            if (!n.inCommon(i,j)) {
-                // compute modified zone's score in old permutation
-                deltaOldScore += matrix_[oldP[i]][oldP[j]];
-                
-                // compute modified zone's score in new permutation
-                deltaNewScore += matrix_[newP[i]][newP[j]];
-            }
-        }
-    }
+    long int delta = n.delta(matrix_, oldP, newP);
         
-    long int newScore = oldP.score() - deltaOldScore + deltaNewScore;
+    long int newScore = oldP.score() + delta;
     newP.setScore(newScore);
     
     return newScore;
 }
+
 
 void Instance::permuteRows(const Permutation& p) {
     Matrix copyMatrix(matrix_);
