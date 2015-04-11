@@ -25,17 +25,19 @@ long int Neighbourhood::delta(const Matrix& matrix, const Permutation& oldP,
 {
     long int deltaOldScore = 0;
     long int deltaNewScore = 0;
+    long int first = p_.first;
+    long int second = p_.second;
 
     for (unsigned i = 0 ; i < size_ ; i++) {
         for (unsigned j = i + 1 ; j < size_ ; j++) {
-            bool iInPair = (i == p_.first) || (i == p_.second);
-            bool jInPair = (j == p_.first) || (j == p_.second);
+            bool iInPair = (i == first) || (i == second);
+            bool jInPair = (j == first) || (j == second);
             
             bool inCommon = (!iInPair && !jInPair)
-                || (i == p_.first && !jInPair && j > p_.second)
-                || (i == p_.second && !jInPair && j > p_.first)
-                || (j == p_.first && !iInPair && i < p_.second)
-                || (j == p_.second && !iInPair && i < p_.first);
+                || (i == first && !jInPair && j > second)
+                || (i == second && !jInPair && j > first)
+                || (j == first && !iInPair && i < second)
+                || (j == second && !iInPair && i < first);
 
             if (!inCommon) {
                 // compute modified zone's score in old permutation

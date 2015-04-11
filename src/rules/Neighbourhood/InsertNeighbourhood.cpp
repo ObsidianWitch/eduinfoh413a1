@@ -41,13 +41,15 @@ long int InsertNeighbourhood::delta(const Matrix& matrix,
 {
     long int deltaOldScore = 0;
     long int deltaNewScore = 0;
+    long int first = p_.first;
+    long int second = p_.second;
     
     for (unsigned i = 0 ; i < size_ ; i++) {
         for (unsigned j = i + 1 ; j < size_ ; j++) {
-            bool inCommon = (i < p_.first)
-                || (i > p_.second)
-                || (j < p_.first)
-                || (j > p_.second);
+            bool inCommon = (i < first)
+                || (i > second)
+                || (j < first)
+                || (j > second);
 
             if (!inCommon) {
                 // compute modified zone's score in old permutation
