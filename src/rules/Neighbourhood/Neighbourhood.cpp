@@ -28,23 +28,28 @@ long int Neighbourhood::delta(const Matrix& matrix, const Permutation& oldP,
     long int first = p_.first;
     long int second = p_.second;
 
-    for (unsigned i = 0 ; i < size_ ; i++) {
-        for (unsigned j = i + 1 ; j < size_ ; j++) {
-            bool iInPair = (i == first) || (i == second);
-            bool jInPair = (j == first) || (j == second);
-            
-            bool inCommon = (!iInPair && !jInPair)
-                || (i == first && !jInPair && j > second)
-                || (i == second && !jInPair && j > first)
-                || (j == first && !iInPair && i < second)
-                || (j == second && !iInPair && i < first);
-
-            if (!inCommon) {
-                // compute modified zone's score in old permutation
-                deltaOldScore += matrix[oldP[i]][oldP[j]];
-                
-                // compute modified zone's score in new permutation
-                deltaNewScore += matrix[newP[i]][newP[j]];
+    for (unsigned k = 0 ; k < size_ ; k++) {
+        if (first > k) {
+            deltaOldScore += matrix[oldP[k]][oldP[first]];
+            deltaNewScore += matrix[newP[k]][newP[first]];
+        }
+        
+        if (second > k) {
+            deltaOldScore += matrix[oldP[k]][oldP[second]];
+            deltaNewScore += matrix[newP[k]][newP[second]];
+        }
+        
+        if (first < k) {
+            if (k != first && k != second) {
+                deltaOldScore += matrix[oldP[first]][oldP[k]];
+                deltaNewScore += matrix[newP[first]][newP[k]];
+            }
+        }
+        
+        if (second < k) {
+            if (k != first && k != second) {
+                deltaOldScore += matrix[oldP[second]][oldP[k]];
+                deltaNewScore += matrix[newP[second]][newP[k]];
             }
         }
     }
