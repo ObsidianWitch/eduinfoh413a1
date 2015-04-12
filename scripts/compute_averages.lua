@@ -21,8 +21,7 @@ function extractWriteData(experiment, averagesFile)
     local timeAverage = 0;
     
     for line in experimentFile:lines() do
-        local delta, time = line:match("N-.+50 %d+ %d+ (%d+.%d+) (%d+)")
-        
+        local delta, time = line:match("N-.+50 %d+ %d+ (%d+.%d+) (%d+.%d+)")
         averageDelta = averageDelta + delta
         timeSum = timeSum + time
     end
