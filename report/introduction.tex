@@ -7,3 +7,39 @@ matrix instance we were given, we also have the best-known score we should try
 to approach. For each combination of rules, we also had to run the 2 programs
 on each instance. The results of each combination were used to compute
 statistical tests with R.
+
+\subsection{Hierarchy}
+
+\noindent The file tree below contains a short description of the assignment's
+directories:
+
+\begin{framed}
+\dirtree{%
+.1 Assignment1.
+.2 best\_known - best-known scores for each instance.
+.2 experiments - contains the results of each experiment executed on each instance.
+.2 instances - matrix instances.
+.2 report - report's LaTeX sources.
+.2 src.
+    .3 IterativeImprovement - classes related to the first exercise.
+    .3 rules - classes related to rules (initialisation, pivot, neighbourhood).
+    .3 tests - tests to verify that implemented features are working individually.
+    .3 VariableNeighbourhoodDescent - classes related to the second exercise.
+.2 subject.
+.2 CMakeLists.txt - Used by cmake in order to generate a Makefile.
+}
+\end{framed}
+
+\subsection{Compilation}
+
+\noindent In order to compile the programs, cmake is necessary and the
+instructions below must be followed.
+
+\begin{lstlisting}[language=bash]
+> mkdir out
+> cd out
+> cmake ..
+> make lop vnd
+\end{lstlisting}
+
+\newpage
