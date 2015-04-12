@@ -41,20 +41,19 @@ Usage:./vnd -n <neighbourhood (tei|tie)>
 ## Generate experiments
 
 ~~~
-# Will execute all the experiments sequentially (will take a lot of time)
+# Execute all the experiments sequentially (will take a lot of time)
 > ./generate_experiments.lua
 
 OR
 
-# Will execute one type of experiment on all instances
+# Execute one type of experiment on all instances
 > ./generate_experiments_one.lua lop <random|cw> <first|best>
                                      <transpose|exchange|insert>
-or
 > ./generate_experiments_one.lua vnd <tei|tie>
 
 OR
 
-# Will execute all the experiments in parallel.
+# Execute all the experiments in parallel.
 # Comment lines inside the script in order to execute k experiments where k is
 # the number of threads your processor can run.
 > ./generate_experiments.sh
