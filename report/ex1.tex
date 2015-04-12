@@ -244,10 +244,7 @@ experiments.\\
 
 An R script (\emph{scripts/statistical\_hypothesis\_tests.R}) was written in order
 to apply these tests to all possible pairs of experiments. The output was saved
-in the \emph{experiments/stats\_tests} directory (reminder: these
-results do not have much significance, because the experiments were run on
-the transpose neighbourhoods + 2 other neighbourhoods which were intended by the
-assignment subject).\\
+in the \textbf{experiments/stats\_tests directory}.\\
 
 \begin{lstlisting}[language=R]
 #!/usr/bin/Rscript
@@ -285,5 +282,93 @@ dir.create(out.dir, showWarnings=FALSE)
 write.table(results[,,1], paste(out.path, "t", sep="_"))
 write.table(results[,,2], paste(out.path, "wilcoxon", sep="_"))
 \end{lstlisting}
+
+\newpage
+
+\subsubsection{Student's t-test}
+
+% TODO which experiment correspond to which row/col
+
+\begin{table}[h]
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+\hline
+1 & 0 & 1.36e-32 & 8.62e-74 & 9.19e-23 & 6e-32 & 9.17e-74 & 1.09e-10 & 5.27e-32 & 8.35e-77 & 8.88e-23 \\ \hline
+2 & 0 & 0 & 1.65e-74 & 3.12e-15 & 0.0787 & 1.75e-74 & 4.21e-11 & 9.18e-07 & 1.26e-78 & 0.563 \\ \hline
+3 & 0 & 0 & 0 & 3.35e-74 & 1.34e-73 & 0.00952 & 3.47e-79 & 1.1e-78 & 2.94e-60 & 1.15e-77 \\ \hline
+4 & 0 & 0 & 0 & 0 & 1.53e-16 & 3.68e-74 & 0.207 & 4.31e-18 & 6.69e-78 & 5.37e-07 \\ \hline
+5 & 0 & 0 & 0 & 0 & 0 & 1.47e-73 & 7.56e-12 & 0.000258 & 3.77e-80 & 0.123 \\ \hline
+6 & 0 & 0 & 0 & 0 & 0 & 0 & 4.11e-79 & 1.14e-78 & 3.43e-60 & 1.24e-77 \\ \hline
+7 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 3.12e-28 & 2.71e-78 & 1.96e-14 \\ \hline
+8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1.42e-79 & 3.39e-10 \\ \hline
+9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5.1e-79 \\ \hline
+10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+11 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+12 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|l||l|l|}
+\hline
+1 & 7.71e-34 & 6.53e-77 \\ \hline
+2 & 4.45e-11 & 1.11e-78 \\ \hline
+3 & 3.36e-78 & 1.51e-60 \\ \hline
+4 & 3.64e-23 & 6.25e-78 \\ \hline
+5 & 1.34e-08 & 3.12e-80 \\ \hline
+6 & 3.76e-78 & 1.81e-60 \\ \hline
+7 & 1.28e-30 & 2.17e-78 \\ \hline
+8 & 0.000117 & 1.07e-79 \\ \hline
+9 & 1.55e-81 & 0.000125 \\ \hline
+10 & 8.07e-16 & 4.25e-79 \\ \hline
+11 & 0 & 1.77e-81 \\ \hline
+12 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\subsubsection{Wilcoxon signed-rank test}
+
+\begin{table}[h]
+\begin{tabular}{|l||l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+\hline
+1 & 0 & 1.72e-14 & 1.72e-14 & 3.71e-14 & 1.72e-14 & 1.72e-14 & 1.15e-09 & 1.72e-14 & 1.72e-14 & 2.95e-14 \\ \hline
+2 & 0 & 0 & 1.72e-14 & 5.08e-12 & 0.127 & 1.72e-14 & 8.19e-10 & 3.37e-06 & 1.72e-14 & 0.956 \\ \hline
+3 & 0 & 0 & 0 & 1.72e-14 & 1.72e-14 & 0.000364 & 1.72e-14 & 1.72e-14 & 1.72e-14 & 1.72e-14 \\ \hline
+4 & 0 & 0 & 0 & 0 & 5.84e-12 & 1.72e-14 & 0.314 & 8.85e-13 & 1.72e-14 & 1.97e-06 \\ \hline
+5 & 0 & 0 & 0 & 0 & 0 & 1.72e-14 & 4.94e-10 & 0.000446 & 1.72e-14 & 0.222 \\ \hline
+6 & 0 & 0 & 0 & 0 & 0 & 0 & 1.72e-14 & 1.72e-14 & 1.72e-14 & 1.72e-14 \\ \hline
+7 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2.63e-14 & 1.72e-14 & 3.73e-11 \\ \hline
+8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1.72e-14 & 4.99e-09 \\ \hline
+9 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1.72e-14 \\ \hline
+10 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+11 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+12 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|l||l|l|}
+\hline
+ & 11 & 12 \\ \hline
+\hline
+1 & 1.72e-14 & 1.72e-14 \\ \hline
+2 & 4.05e-09 & 1.72e-14 \\ \hline
+3 & 1.72e-14 & 1.72e-14 \\ \hline
+4 & 7.66e-14 & 1.72e-14 \\ \hline
+5 & 2.6e-07 & 1.72e-14 \\ \hline
+6 & 1.72e-14 & 1.72e-14 \\ \hline
+7 & 2.25e-14 & 1.72e-14 \\ \hline
+8 & 0.000136 & 1.72e-14 \\ \hline
+9 & 1.72e-14 & 1.92e-06 \\ \hline
+10 & 3.33e-12 & 1.72e-14 \\ \hline
+11 & 0 & 1.72e-14 \\ \hline
+12 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
 
 \newpage
