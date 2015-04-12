@@ -34,9 +34,8 @@ in the \emph{IterativeImprovement} class.\\
 
 \begin{lstlisting}
 void IterativeImprovement::run() {
-    Permutation p(instance_.size());
-
     bool localOptimum = false;
+    Permutation p1 = initialization_.generateInitialization();
     instance_.evaluate(p1);
     
     while (!localOptimum) {
@@ -51,43 +50,101 @@ void IterativeImprovement::run() {
 
 The two main classs used in this program are the \emph{Instance} and
 \emph{Permutation} classes. The first one loads a matrix from an instance file
-and stores it in a 2D vector. The second one contains an array representing the
-permutation concept described in the subject's slides.\\
+and stores it in a 2D vector. The second one contains a 1D vector representing
+the permutation concept described in the subject's slides.\\
 
 The \textbf{Instance::evaluate()} method is used to compute an instance's score
 with the help of a permutation. The following formula corresponds to the sum
 computed by this method:\\
-$\sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} m(\pi[i], \pi[j])$, with $\pi$ a permutation.\\
+$\sum_{i=0}^{n-1} \sum_{j=i+1}^{n-1} m(\pi[i], \pi[j])$, with $\pi$ a
+permutation.\\
 
 We do not need to recompute the sum from each cells between two permutations,
-there are cells which can be reused: $newScore = oldScore - deltaOldScore + deltaNewScore$
-with \emph{deltaOldScores} the cells in the old permutation which were modified
-in the new permutation and \emph{deltaNewScores} the cells in the new permutation
-which were modified in the new permutation. We define the following boolean
-variables in order to determine which cells are in common :\\\\
+there are cells which can be reused: $newScore = oldScore + delta$
+with \emph{delta} containing the contribution from the cells in the new
+permutation which were modified minus the score from the cells in the old
+permutation which were modified. The delta is different for each neighbourhood
+and computed in the \emph{dela()} method defined in the three neighbourhoods
+(i.e. transpose, exchange, insert).\\
 
-\begin{lstlisting}[caption="Cells in common for transpose \& exchange neighbourhoods"]
-bool iInPair = (i == pair.first) || (i == pair.second);
-bool jInPair = (j == pair.first) || (j == pair.second);
+The delta for the insert neighbourhood was found by reading a paper from
+\emph{Tommaso Schiavinotto} \& \emph{Thomas Stützle} \cite{cite:lopPaper}.
+The other ones were deduced from it.\\
 
-bool inCommon = (!iInPair && !jInPair)
-    || (i == pair.first && !jInPair && j > pair.second)
-    || (i == pair.second && !jInPair && j > pair.first)
-    || (j == pair.first && !iInPair && i < pair.second)
-    || (j == pair.second && !iInPair && i < pair.first);
+\begin{lstlisting}
+long int InsertNeighbourhood::delta(const Matrix& matrix,
+    const Permutation& oldP) const
+{
+    unsigned first = p_.first;
+    unsigned second = p_.second;
+    unsigned oldPfirst = oldP[first];
+    
+    long int delta = 0;
+    if (first < second) {
+        for (unsigned k = first + 1 ; k <= second ; k++) {
+            delta += matrix[oldP[k]][oldPfirst] - matrix[oldPfirst][oldP[k]];
+        }
+    }
+    else if (first > second) {
+        for (unsigned k = second ; k <= first - 1 ; k++) {
+            delta += matrix[oldPfirst][oldP[k]] - matrix[oldP[k]][oldPfirst];
+        }
+    }
+    
+    return delta;
+}
 \end{lstlisting}
 \
 
-\begin{lstlisting}[caption="Cells in common for insert neighbourhoods"]
-    bool inCommon = (i < first())
-        || (i > second())
-        || (j < first())
-        || (j > second());
+The delta for the transpose neighbourhood ($N_t$) can reuse the one from the
+insert neighbourhood ($N_i$) and be simplified. First of all, $first < second$
+were $first$ and $second$ which are the axis which will be modified to obtain
+the new permutation. Then, $first + 1 == second$, so the loop can be removed
+since it will have only one iteration.\\
+
+\begin{lstlisting}
+
+long int TransposeNeighbourhood::delta(const Matrix& matrix,
+    const Permutation& oldP) const
+{
+    unsigned oldPfirst = oldP[p_.first];
+    unsigned oldPsecond = oldP[p_.second];
+
+    long int delta = matrix[oldPsecond][oldPfirst] - matrix[oldPfirst][oldPsecond];
+
+    return delta;
+}
 \end{lstlisting}
 \
 
-\noindent The \emph{inCommon} variable can then be inverted in order to retrieve the
-modified cells.\\
+As for the exchange neighbourhood ($N_e$), $N_t \subset N_e$, so the delta can
+be built on top of the transpose neighbourhood's one.\\
+
+\begin{lstlisting}
+long int ExchangeNeighbourhood::delta(const Matrix& matrix,
+    const Permutation& oldP) const
+{
+    unsigned first = p_.first;
+    unsigned second = p_.second;
+    unsigned oldPfirst = oldP[first];
+    unsigned oldPsecond = oldP[second];
+
+    long int delta = matrix[oldPsecond][oldPfirst] - matrix[oldPfirst][oldPsecond];
+    for (unsigned k = first + 1 ; k < second ; k++) {
+        delta += matrix[oldPsecond][oldP[k]] - matrix[oldPfirst][oldP[k]];
+        delta += matrix[oldP[k]][oldPfirst] - matrix[oldP[k]][oldPsecond];
+    }
+
+    return delta;
+}
+\end{lstlisting}
+\
+
+Finally these delta can be used in the \emph{Instance::evaluate()} method to
+compute the score for a new permutation from the Instance, the old permutation
+and the pair of axis which will be modified. This method is in turn used in
+the \emph{First/BestImprovement} classes in order to evaluate if a new
+permutation should be generated based on its score.\\
 
 \begin{framewarning}
 	As can be seen previously, OOP mechanisms were used throughout the program
@@ -100,39 +157,51 @@ modified cells.\\
 
 \subsection{Results}
 
-As described previously, problems were encountered regarding the computation time
-of algorithms with the exchange and insert neighbourhoods. These neighbourhoods
-are large and as such take a long time to compute. It would not be feasible to
-execute all the rules combination with all the instances, when the exchange
-neighbourhood with first improvement and a 150*150 instance takes more than
-100 seconds.\\
+At first, problems were encountered regarding the computation time of algorithms
+with the exchange and insert neighbourhoods. These neighbourhoods
+are large and as such the scores took a long time to compute. By using the
+optimizations described in the previous section, computation times were
+drastically improved.\\
 
-Optimisations regarding the sum in the evaluation of the score were made
-(ignoring the cells which were not modified in the sum), but it was not
-sufficient to reduce the computation time. Though, it did improve the
-computation time: from 300 seconds to 100 seconds for the case described in the
-previous paragraph.\\
-
-One method to reduce the computation time would have been to proceed to
+One method to reduce the computation time further would have been to proceed to
 neighbourhood pruning in order to remove some neighbours which would not have
-been likely to improved the score.\\
+been likely to improve the score.\\
 
-Although the results do not really have any significance, the scripts were run
-on simplified neighbourhoods in order to prove that they work as intended. To
-reproduce the generation of these results, the \emph{oldNeighbourhoods} branch
-can be switched to in \emph{git}.\\
+\noindent As for the scripts, a brief description can be seen below. The
+\emph{generate\_experiments.sh} script was executed on 2 machines with 8 cores
+each (details in the introduction) to take care of the 14 combinations of
+programs.
 
-The \emph{script/generate\_experiments.lua} script generates all experiments from
-all the rule combinations and instances in a separate file for each rule
-combination. The file format and an example can be seen below.\\
+\begin{lstlisting}[language=bash]
+# Execute all the experiments sequentially (will take a few hours)
+> ./generate_experiments.lua
+
+OR
+
+# Execute one type of experiment on all instances
+> ./generate_experiments_one.lua lop <random|cw> <first|best>
+                                     <transpose|exchange|insert>
+> ./generate_experiments_one.lua vnd <tei|tie>
+
+OR
+
+# Execute all the experiments in parallel.
+# Comment lines inside the script in order to execute k experiments where k is
+# the number of threads your processor can run.
+> ./generate_experiments.sh
+\end{lstlisting}
+\
+
+The format from the files generated by these scripts can be seen below. All the
+experiments results were saved in the \textbf{experiments directory}.
 
 \begin{lstlisting}
 instance_name score best_known_score relative_percentage_deviation computation_time
 
-N-be75eec_150 2850321 3482828 18.160730303076 1.10763
-N-be75eec_250 7456782 8893533 16.155008363943 7.79982
-N-be75np_150 5991561 7174325 16.486066633446 0.997437
-N-be75np_250 14820463 17814072 16.804742902128 7.66058
+N-be75eec_150 3267050 3482828 6.1954825216749 1.22026
+N-be75eec_250 8594018 8893533 3.3677842090427 12.5494
+N-be75np_150 6843802 7174325 4.6070257480669 1.33389
+N-be75np_250 17032098 17814072 4.3896420762193 13.7589
 ...
 \end{lstlisting}
 \
@@ -143,15 +212,21 @@ previously generated experiments files and computes averages from it.\\
 \begin{lstlisting}
 experiment_name average_delta time_sum time_average
 
-ii_cw_best_exchange 17.277346692163 333 4.2692307692308
-ii_cw_best_insert 17.084249592579 321 4.1153846153846
-ii_cw_best_transpose 17.549047663734 243 3.1153846153846
-...
+ii_cw_best_exchange 4.4042215638761 553.60109 7.0974498717949
+ii_cw_best_insert 2.7739515142054 622.65918 7.98281
+ii_cw_best_transpose 17.549047663734 1.92926601 0.024734179615385
+ii_cw_first_exchange 3.4509963608726 2954.77757 37.881763717949
+ii_cw_first_insert 2.6584281251769 1956.65391 25.085306538462
+ii_cw_first_transpose 17.561188605784 1.93007776 0.024744586666667
+ii_random_best_exchange 3.5884341872336 636.49971 8.1602526923077
+ii_random_best_insert 2.2912062196199 699.15021 8.9634642307692
+ii_random_best_transpose 34.183520453804 0.159127704 0.0020400987692308
+ii_random_first_exchange 2.8348219580937 4029.14031 51.655645
+ii_random_first_insert 2.0220145177762 3475.42275 44.556701923077
+ii_random_first_transpose 34.299452518199 0.107179425 0.0013740951923077
+vnd_tei 2.6595640233508 1970.80062 25.266674615385
+vnd_tie 2.6487053958858 1352.99196 17.346050769231
 \end{lstlisting}
-
-\begin{framehint}
-    All the experiments results were saved in the \emph{experiments} directory.
-\end{framehint}
 
 \newpage
 
