@@ -48,7 +48,7 @@ void IterativeImprovement::run() {
 \end{lstlisting}
 \
 
-The two main classs used in this program are the \emph{Instance} and
+The two main class used in this program are the \emph{Instance} and
 \emph{Permutation} classes. The first one loads a matrix from an instance file
 and stores it in a 2D vector. The second one contains a 1D vector representing
 the permutation concept described in the subject's slides.\\
@@ -160,7 +160,7 @@ permutation should be generated based on its score.\\
 At first, problems were encountered regarding the computation time of algorithms
 with the exchange and insert neighbourhoods. These neighbourhoods
 are large and as such the scores took a long time to compute. By using the
-optimizations described in the previous section, computation times were
+optimisations described in the previous section, computation times were
 drastically improved.\\
 
 One method to reduce the computation time further would have been to proceed to
@@ -169,8 +169,7 @@ been likely to improve the score.\\
 
 \noindent As for the scripts, a brief description can be seen below. The
 \emph{generate\_experiments.sh} script was executed on 2 machines with 8 cores
-each (details in the introduction) to take care of the 14 combinations of
-programs.
+each to take care of the 14 combinations of programs.
 
 \begin{lstlisting}[language=bash]
 # Execute all the experiments sequentially (will take a few hours)
@@ -225,6 +224,12 @@ ii_random_first_exchange 2.8348219580937 4029.14031 51.655645
 ii_random_first_insert 2.0220145177762 3475.42275 44.556701923077
 ii_random_first_transpose 34.299452518199 0.107179425 0.0013740951923077
 \end{lstlisting}
+\
+
+The transpose neighbourhood has the best computation times, but the worst
+solutions (highest average percentage deviation). The insert neighbourhood
+provides the best solutions, with average computation times close to the
+exchange neighbourhood.
 
 \newpage
 
