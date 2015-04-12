@@ -89,17 +89,12 @@ bool inCommon = (!iInPair && !jInPair)
 \noindent The \emph{inCommon} variable can then be inverted in order to retrieve the
 modified cells.\\
 
-\begin{frameurgent}
-	In order to know which optimisation to use, I have used an OOP mechanism
-	(inclusion polymorphism, \emph{Neighbourhood::inCommon()}) but it slows
-	down the program more than if no OOP mechanism was used. The computation
-	time is strongly affected by this because the \emph{evaluate()} method is
-	the most called method in the program.\\
-	
-	\noindent In retrospect, it would probably have been more efficient to not
-	use any abstraction at all in the program, or use CPP templates (since
-	templates are expanded at compile time and not during execution).
-\end{frameurgent}
+\begin{framewarning}
+	As can be seen previously, OOP mechanisms were used throughout the program
+	(e.g. abstraction, inclusion polymorphism). By doing so, new rules can be
+	added easily. But these mechanisms introduce indirections which may slow
+	down the computation time compared to a program written without OOP.
+\end{framewarning}
 
 \newpage
 
